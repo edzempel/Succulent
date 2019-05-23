@@ -7,6 +7,8 @@
 # CakePHP 3
 
 /vendor/*
+
+#This file contains authentication information
 /config/app.php
 
 /tmp/cache/models/*
