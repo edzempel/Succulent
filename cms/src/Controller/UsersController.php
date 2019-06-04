@@ -118,10 +118,11 @@ class UsersController extends AppController
     }
 
     // allows users the ability to logout without authenticating
+    // also allows users to register for an account without being logged in
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['logout']);
+        $this->Auth->allow(['logout', 'add']);
     }
 
     public function logout()
