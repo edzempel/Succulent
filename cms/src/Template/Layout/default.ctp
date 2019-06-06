@@ -34,6 +34,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
+<div class="">
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
@@ -42,11 +43,22 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li class="menu-icon"></li>
+
+                <li class="has-dropdown">
+                    <a href="#">Settings is wide</a>
+                    <ul class="dropdown not-click contain-to-grid" data-options="dropdown_autoclose: false">
+                        <li class="active"><?= $this->Html->link(__('Login'), ['action' => 'login']) ?></li>
+                        <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
+                        <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                        <li><?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
     </nav>
+</div>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
