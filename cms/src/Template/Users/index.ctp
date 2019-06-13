@@ -54,5 +54,6 @@
 </div >
 
 
-<?= $this->Html->link(__('New User'), ['action' => 'add'],  ['class' => 'button round'])?>
+<?= $this->Html->link(__('New User'), ['action' => 'add'],  ['class' => 'button square'])?></br>
 
+<?= $this->Html->link(__('Edit'), ['action' => 'edit'],  ['class' => 'button square'])?>
