@@ -48,7 +48,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <li class="has-dropdown">
                     <a href="#">Settings is wide</a>
                     <ul class="dropdown not-click contain-to-grid" data-options="dropdown_autoclose: false">
-                        <li class="active"><?= $this->Html->link(__('Login'), ['action' => 'login']) ?></li>
+                        <li><?= $this->Html->link(__('Login'), ['action' => 'login']) ?></li>
                         <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
                         <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
                         <li><?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?></li>
