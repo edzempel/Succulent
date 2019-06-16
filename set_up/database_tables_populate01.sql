@@ -4,37 +4,48 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    username VARCHAR (10) NOT NULL,
     created DATETIME,
     modified DATETIME
 );
 
-CREATE TABLE articles (
+CREATE TABLE plants (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    title VARCHAR(255) NOT NULL,
+    scientific_name VARCHAR(255),
+    common_name VARCHAR(255),
     slug VARCHAR(191) NOT NULL,
-    body TEXT,
-    published BOOLEAN DEFAULT FALSE,
+    notes TEXT,
     created DATETIME,
     modified DATETIME,
     UNIQUE KEY (slug),
     FOREIGN KEY user_key (user_id) REFERENCES users(id)
 ) CHARSET=utf8mb4;
 
-CREATE TABLE tags (
+CREATE TABLE waters (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(191),
-    created DATETIME,
-    modified DATETIME,
-    UNIQUE KEY (title)
+    plant_id INT NOT NULL,
+    water_date DATETIME,
+    FOREIGN KEY plant_key (plant_id) REFERENCES plants(id)
 ) CHARSET=utf8mb4;
 
-CREATE TABLE articles_tags (
-    article_id INT NOT NULL,
-    tag_id INT NOT NULL,
-    PRIMARY KEY (article_id, tag_id),
-    FOREIGN KEY tag_key(tag_id) REFERENCES tags(id),
-    FOREIGN KEY article_key(article_id) REFERENCES articles(id)
+
+CREATE TABLE pots (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    plant_id INT NOT NULL,
+    water_date DATETIME,
+    FOREIGN KEY plant_key (plant_id) REFERENCES plants(id)
+) CHARSET=utf8mb4;
+
+CREATE TABLE photos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    plant_id INT NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    created DATETIME,
+    modified DATETIME,
+    is_profile BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY plant_key (plant_id) REFERENCES plants(id)
+
 );
 
 INSERT INTO users (email, password, created, modified)
