@@ -33,8 +33,8 @@ CREATE TABLE waters (
 CREATE TABLE pots (
     id INT AUTO_INCREMENT PRIMARY KEY,
     plant_id INT NOT NULL,
-    water_date DATETIME,
-    FOREIGN KEY plant_key (plant_id) REFERENCES plants(id)
+    pot_date DATETIME,
+    FOREIGN KEY plantpot_key (plant_id) REFERENCES plants(id)
 ) CHARSET=utf8mb4;
 
 CREATE TABLE photos (
@@ -44,7 +44,7 @@ CREATE TABLE photos (
     created DATETIME,
     modified DATETIME,
     is_profile BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY plant_key (plant_id) REFERENCES plants(id)
+    FOREIGN KEY plantphotos_key (plant_id) REFERENCES plants(id)
 
 );
 
