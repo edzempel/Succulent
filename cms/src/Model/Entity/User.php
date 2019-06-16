@@ -33,7 +33,7 @@ class User extends Entity
         'username' => true,
         'created' => true,
         'modified' => true,
-        'articles' => true
+        //'articles' => true
     ];
 
     /**
