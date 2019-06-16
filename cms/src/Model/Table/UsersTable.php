@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -9,7 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \App\Model\Table\ArticlesTable|\Cake\ORM\Association\HasMany $Articles
+ * @property |\Cake\ORM\Association\HasMany $Plants
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -40,7 +41,7 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Articles', [
+        $this->hasMany('Plants', [
             'foreignKey' => 'user_id'
         ]);
     }
@@ -68,6 +69,12 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->allowEmptyString('password', false);
 
+        $validator
+            ->scalar('username')
+            ->maxLength('username', 10)
+            ->requirePresence('username', 'create')
+            ->allowEmptyString('username', false);
+
         return $validator;
     }
 
@@ -81,6 +88,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
+        // $rules->add($rules->isUnique(['username']));
 
         return $rules;
     }
