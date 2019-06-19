@@ -53,7 +53,8 @@ $cakeDescription = 'Succulent';
     <nav class="navbar navbar-light bg-white" role="navigation">
 
         <a class="navbar-brand" href="#">
-            <img src="pics/logo.png" width="180" height="180" class="d-inline-block align-top" alt="logo">
+
+            <img src="img/logo.png" width="180" height="180" class="d-inline-block align-top" alt="logo">
         </a>
 
         <h1 class="header text-warning"><a><?= $this->fetch('title') ?></a></h1>
