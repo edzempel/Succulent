@@ -52,10 +52,9 @@ $cakeDescription = 'Succulent';
    <div class="sticky-top">
     <nav class="navbar navbar-light bg-white" role="navigation">
 
-        <a class="navbar-brand" href="#">
 
-            <img src="img/logo.png" width="180" height="180" class="d-inline-block align-top" alt="logo">
-        </a>
+
+        <?= $this->Html->image('logo.png',['class'=>'navbar-brand d-inline-block align-top', 'alt' => 'succulent logo', 'width'=>'150','height'=>'150', 'url'=> ['controller'=>'Plants', 'action' => 'index']]);?>
 
         <h1 class="header text-warning"><a><?= $this->fetch('title') ?></a></h1>
 
