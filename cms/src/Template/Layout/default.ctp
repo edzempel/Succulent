@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Succulent';
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,42 +28,61 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('bootstrap.css') ?>
+    <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('custom.css') ?>
+
+
+    <?= $this->Html->script('jquery-3.4.1.min.js') ?>
+    <?= $this->Html->script('bootstrap.js') ?>
+    <?= $this->Html->script('bootstrap.min.js') ?>
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+
 </head>
-<body>
-<div class="">
-    <nav class="top-bar" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li class="menu-icon"></li>
+<body class="background">
 
-                <li class="has-dropdown">
-                    <a href="#">Settings is wide</a>
-                    <ul class="dropdown not-click contain-to-grid" data-options="dropdown_autoclose: false">
-                        <li class="active"><?= $this->Html->link(__('Login'), ['action' => 'login']) ?></li>
-                        <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                        <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-                        <li><?= $this->Html->link(__('Logout'), ['action' => 'logout']) ?></li>
-                    </ul>
-                </li>
 
-            </ul>
+
+
+   <div class="sticky-top">
+    <nav class="navbar navbar-light bg-white" role="navigation">
+
+
+
+        <?= $this->Html->image('logo.png',['class'=>'navbar-brand d-inline-block align-top', 'alt' => 'succulent logo', 'width'=>'150','height'=>'150', 'url'=> ['controller'=>'Plants', 'action' => 'index']]);?>
+
+        <h1 class="header text-warning"><a><?= $this->fetch('title') ?></a></h1>
+
+
+        <div class="dropdown">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                <a><?= $this->Html->link(__('Login'), ['action' => 'login'], ['class'=> 'dropdown-item']) ?></a>
+                <a class="dropdown-item" href="http://localhost:8765/users">Users</a>
+                <a class="dropdown-item" href="http://localhost:8765/plants">Library</a>
+                <a><?= $this->Html->link(__('Schedule'), ['action' => 'Schedule'], ['class'=> 'dropdown-item'] ) ?></a>
+                <a><?= $this->Html->link(__('Settings'), ['action' => 'Settings'], ['class'=> 'dropdown-item'] ) ?></a>
+                <a class="dropdown-item" href="https://book.cakephp.org/3.0/">Help </a>
+                <a><?= $this->Html->link(__('Logout'), ['action' => 'logout'], ['class'=> 'dropdown-item'] ) ?></a>
+            </div>
         </div>
+
     </nav>
-</div>
+   </div>
+
+    <div class="container-fluid" >
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
-    </div>
-    <footer>
-    </footer>
+
+    <?= $this->fetch('content') ?>
+</div>
+<footer>
+</footer>
 </body>
 </html>
