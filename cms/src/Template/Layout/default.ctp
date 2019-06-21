@@ -49,7 +49,7 @@ $cakeDescription = 'Succulent';
 
 
 
-   <div class="sticky-top">
+   <div class="sticky-top border-bottom">
     <nav class="navbar navbar-light bg-white" role="navigation">
 
         <?= $this->Html->image('logo.jpg',['class'=>'navbar-brand d-inline-block align-top zoom', 'alt' => 'succulent logo', 'width'=>'150','height'=>'150', 'url'=> ['controller'=>'Plants', 'action' => 'index']]);?>
