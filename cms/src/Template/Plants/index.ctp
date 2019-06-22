@@ -4,54 +4,53 @@
  * @var \App\Model\Entity\Plant[]|\Cake\Collection\CollectionInterface $plants
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Plant'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Photos'), ['controller' => 'Photos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Photo'), ['controller' => 'Photos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Pots'), ['controller' => 'Pots', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pot'), ['controller' => 'Pots', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Waters'), ['controller' => 'Waters', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Water'), ['controller' => 'Waters', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="plants index large-9 medium-8 columns content">
-    <h3><?= __('Plants') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('scientific_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('common_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($plants as $plant): ?>
-            <tr>
-                <td><?= $this->Number->format($plant->id) ?></td>
-                <td><?= $plant->has('user') ? $this->Html->link($plant->user->id, ['controller' => 'Users', 'action' => 'view', $plant->user->id]) : '' ?></td>
-                <td><?= h($plant->scientific_name) ?></td>
-                <td><?= h($plant->common_name) ?></td>
-                <td><?= h($plant->slug) ?></td>
-                <td><?= h($plant->created) ?></td>
-                <td><?= h($plant->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $plant->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $plant->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $plant->id], ['confirm' => __('Are you sure you want to delete # {0}?', $plant->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+
+
+<!--The top buttons on the page-->
+<?= $this->Html->link(__('Add Plant'), ['controller' => 'plants', 'action' => 'add'], ['class' => 'btn btn-success float-right mt-4 mr-5']) ?>
+<?= $this->Html->link(__('View Photos'), ['controller' => 'photos', 'action' => 'index'], ['class' => 'btn btn-danger float-right mt-4 mr-5']) ?>
+<?= $this->Html->link(__('Add Photo'), ['controller' => 'photos', 'action' => 'add'], ['class' => 'btn btn-danger float-right mt-4 mr-3']) ?>
+<?= $this->Html->link(__('View Pots'), ['controller' => 'pots', 'action' => 'index'], ['class' => 'btn btn-warning float-right mt-4 mr-5 ml-3']) ?>
+<?= $this->Html->link(__('Pot a Plant'), ['controller' => 'pots', 'action' => 'add'], ['class' => 'btn btn-warning float-right mt-4']) ?>
+<?= $this->Html->link(__('View Waters'), ['controller' => 'waters', 'action' => 'index'], ['class' => 'btn btn-info float-right mt-4 mr-5 ml-3']) ?>
+<?= $this->Html->link(__('Water a Plant'), ['controller' => 'waters', 'action' => 'add'], ['class' => 'btn btn-info float-right mt-4']) ?>
+
+
+<!--The Sort dropdown button-->
+<div class="dropdown ">
+    <button class="btn btn-success dropdown-toggle float-right mt-4 mr-5" type="button" id="dropdownMenu2"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+        <a class="dropdown-item"><?= $this->Paginator->sort('scientific_name') ?></a>
+        <a class="dropdown-item"><?= $this->Paginator->sort('common_name') ?></th></a>
+        <a class="dropdown-item"><?= $this->Paginator->sort('created') ?></a>
+        <a class="dropdown-item"><?= $this->Paginator->sort('modified') ?></a>
+        <a class="dropdown-item"> </a>
+
+    </div>
+</div>
+
+
+
+
+    <div class="row">
+        <?php foreach ($plants as $plant): ?>
+            <div class="col-md-3">
+
+                    <div class="card m-5" style="width: 18rem;">
+                        <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">
+                        <div class="card-body mx-auto ">
+                            <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id,], array('class' => 'btn btn-primary')) ?>
+                        </div>
+                    </div>
+            </div>
+
+
+        <?php endforeach; ?>
+    </div>
+
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -62,4 +61,3 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
-</div>
