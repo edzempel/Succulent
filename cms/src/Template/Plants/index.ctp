@@ -35,14 +35,15 @@
 
 
 
-    <div class="row">
+    <div class="row  mx-auto">
         <?php foreach ($plants as $plant): ?>
-            <div class="col-md-3">
+            <div class="col-lg-3">
 
-                    <div class="card m-5" style="width: 18rem;">
-                        <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">
+                    <div class="card m-5 zoom" style="width: 18rem;">
+<!--                        <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">-->
+                        <?= $this->Html->image('Aloe.jpg',['class'=>'card-img-top  ', 'alt' => 'succulent logo', 'url'=> ['controller'=>'Plants', 'action' => 'view' , $plant->id]]);?>
                         <div class="card-body mx-auto ">
-                            <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id,], array('class' => 'btn btn-primary')) ?>
+                            <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'btn btn-primary')) ?>
                         </div>
                     </div>
             </div>
