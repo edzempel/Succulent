@@ -28,13 +28,14 @@ $cakeDescription = 'Succulent';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('bootstrap.css') ?>
+
     <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('bootstrap.css') ?>
     <?= $this->Html->css('custom.css') ?>
 
 
+    <?= $this->Html->script('popper.min.js') ?>
     <?= $this->Html->script('jquery-3.4.1.min.js') ?>
-    <?= $this->Html->script('bootstrap.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
 
 
@@ -52,14 +53,14 @@ $cakeDescription = 'Succulent';
    <div class="sticky-top border-bottom">
     <nav class="navbar navbar-light bg-white" role="navigation">
 
-        <?= $this->Html->image('logo.jpg',['class'=>'navbar-brand d-inline-block align-top zoom', 'alt' => 'succulent logo', 'width'=>'150','height'=>'150', 'url'=> ['controller'=>'Plants', 'action' => 'index']]);?>
+        <?= $this->Html->image('logo.jpg',['class'=>'navbar-brand d-inline-block align-top zoom ml-4', 'alt' => 'succulent logo', 'width'=>'150','height'=>'150', 'url'=> ['controller'=>'Plants', 'action' => 'index']]);?>
         
 
         <h1 class="header text-warning"><a><?= $this->fetch('title') ?></a></h1>
 
 
         <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-success dropdown-toggle mr-5 " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Menu
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
@@ -76,11 +77,14 @@ $cakeDescription = 'Succulent';
     </nav>
    </div>
 
-    <div class="container-fluid" >
-    <?= $this->Flash->render() ?>
 
-    <?= $this->fetch('content') ?>
-</div>
+        <?= $this->Flash->render() ?>
+
+        <div class="">
+            <?= $this->fetch('content') ?>
+        </div>
+
+
 <footer>
 </footer>
 </body>

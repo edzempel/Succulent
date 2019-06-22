@@ -34,6 +34,11 @@
         </tr>
         </thead>
         <tbody>
+
+
+
+
+
         <?php foreach ($plants as $plant): ?>
             <tr>
                 <td><?= $this->Number->format($plant->id) ?></td>
@@ -50,6 +55,12 @@
                 </td>
             </tr>
         <?php endforeach; ?>
+
+
+
+
+
+
         </tbody>
     </table>
     <div class="paginator">
