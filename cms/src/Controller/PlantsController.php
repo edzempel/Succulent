@@ -23,7 +23,11 @@ class PlantsController extends AppController
         $this->paginate = [
             'contain' => ['Users']
         ];
-        $plants = $this->paginate($this->Plants);
+        $settings = [
+            'limit' => 8,
+            'maxLimit' => 100
+        ];
+        $plants = $this->paginate($this->Plants, $settings);
 
         $this->set(compact('plants'));
     }
