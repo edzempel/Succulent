@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -53,6 +54,9 @@ class PlantsController extends AppController
         $plant = $this->Plants->newEntity();
         if ($this->request->is('post')) {
             $plant = $this->Plants->patchEntity($plant, $this->request->getData());
+            // set the user_id from the session
+            $plant->user_id = $this->Auth->user('id');
+
             if ($this->Plants->save($plant)) {
                 $this->Flash->success(__('The plant has been saved.'));
 
@@ -60,8 +64,8 @@ class PlantsController extends AppController
             }
             $this->Flash->error(__('The plant could not be saved. Please, try again.'));
         }
-        $users = $this->Plants->Users->find('list', ['limit' => 200]);
-        $this->set(compact('plant', 'users'));
+        $user = $this->Plants->Users->find('list', ['limit' => 200]);
+        $this->set('plant', $plant);
     }
 
     /**
@@ -107,5 +111,32 @@ class PlantsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+        // The add and tags actions are always allowed to logged in users.
+        if (in_array($action, ['add', 'tags'])) {
+            return true;
+        }
+
+        // All other actions require a slug.
+        $slug = $this->request->getParam('pass.0');
+        if (!$slug) {
+            return false;
+        }
+
+        // Check that the article belongs to the current user.
+        $plant = $this->Plants->findBySlug($slug)->first();
+
+        return $plant->user_id === $user['id'];
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+        // list what is allowed for unauthenticated users
+        $this->Auth->allow(['']);
     }
 }
