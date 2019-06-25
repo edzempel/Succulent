@@ -38,7 +38,7 @@ legend {
 }
 
 .row {
-    max-width: 80rem;
+    max-width: 5000px;
 }
 
 .actions.columns {
@@ -487,8 +487,8 @@ div.message.hidden {
 /* Force equal height by overflowing */
 .content,
 #actions-sidebar {
-    margin-bottom: -99999px;
-    padding-bottom: 99999px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 @media(max-width: 640px) {
     #actions-sidebar {
