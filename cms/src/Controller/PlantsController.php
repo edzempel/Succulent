@@ -120,7 +120,7 @@ class PlantsController extends AppController
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
-        // The add and tags actions are always allowed to logged in users.
+        // The add and tags actions are always allowed to logged out users.
         if (in_array($action, ['add', 'tags'])) {
             return true;
         }
