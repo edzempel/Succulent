@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -122,6 +123,8 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Auth->allow(['logout', 'add']);
+        // https://book.cakephp.org/3.0/en/controllers/components/authentication.html#configuration-options
+        $this->Auth->config(['loginRedirect' => ['controller' => 'Plants', 'action' => 'index']]);
     }
 
     public function logout()
