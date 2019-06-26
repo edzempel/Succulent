@@ -12,6 +12,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -47,6 +48,7 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 
         $this->loadComponent('Auth', [
+            'authorize' => 'Controller',
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -74,5 +76,11 @@ class AppController extends Controller
         //$this->loadComponent('Security');
 
         //TODO add access restriction https://book.cakephp.org/3.0/en/tutorials-and-examples/cms/authentication.html#restricting-article-access
+    }
+
+    public function isAuthorized($user)
+    {
+        // By default deny access.
+        return false;
     }
 }
