@@ -27,7 +27,8 @@ class PlantsController extends AppController
             'limit' => 8,
             'maxLimit' => 100
         ];
-        $plants = $this->paginate($this->Plants, $settings);
+        $user_id = $this->Auth->user('id');
+        $plants = $this->paginate($this->Plants->find()->where(['user_id'=> $user_id]), $settings);
 
         $this->set(compact('plants'));
     }
@@ -79,13 +80,13 @@ class PlantsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($slug)
     {
-        $plant = $this->Plants->get($id, [
-            'contain' => []
-        ]);
+        $plant = $this->Plants->findBySlug($slug)
+            ->contain([])->firstOrFail();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $plant = $this->Plants->patchEntity($plant, $this->request->getData());
+            $plant = $this->Plants->patchEntity($plant, $this->request->getData(), ['accessibleFields' => ['user_id' => false]]);
             if ($this->Plants->save($plant)) {
                 $this->Flash->success(__('The plant has been saved.'));
 
@@ -120,8 +121,10 @@ class PlantsController extends AppController
     public function isAuthorized($user)
     {
         $action = $this->request->getParam('action');
-        // The add and tags actions are always allowed to logged out users.
-        if (in_array($action, ['add', 'tags'])) {
+
+        // The add actions are always allowed to logged in users.
+        if (in_array($action, ['add', 'index'])) {
+
             return true;
         }
 
@@ -135,6 +138,7 @@ class PlantsController extends AppController
         $plant = $this->Plants->findBySlug($slug)->first();
 
         return $plant->user_id === $user['id'];
+
     }
 
     public function initialize()
