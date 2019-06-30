@@ -36,6 +36,6 @@ $this->assign('email', $email );
             echo $this->Form->control('notes');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Save')) ?>
     <?= $this->Form->end() ?>
 </div>

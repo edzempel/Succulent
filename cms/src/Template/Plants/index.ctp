@@ -8,12 +8,7 @@
 
 <!--The top buttons on the page-->
 <?= $this->Html->link(__('Add Plant'), ['controller' => 'plants', 'action' => 'add'], ['class' => 'btn btn-success float-right mt-4 mr-5']) ?>
-<?= $this->Html->link(__('View Photos'), ['controller' => 'photos', 'action' => 'index'], ['class' => 'btn btn-danger float-right mt-4 mr-5']) ?>
-<?= $this->Html->link(__('Add Photo'), ['controller' => 'photos', 'action' => 'add'], ['class' => 'btn btn-danger float-right mt-4 mr-3']) ?>
-<?= $this->Html->link(__('View Pots'), ['controller' => 'pots', 'action' => 'index'], ['class' => 'btn btn-warning float-right mt-4 mr-5 ml-3']) ?>
-<?= $this->Html->link(__('Pot a Plant'), ['controller' => 'pots', 'action' => 'add'], ['class' => 'btn btn-warning float-right mt-4']) ?>
-<?= $this->Html->link(__('View Waters'), ['controller' => 'waters', 'action' => 'index'], ['class' => 'btn btn-info float-right mt-4 mr-5 ml-3']) ?>
-<?= $this->Html->link(__('Water a Plant'), ['controller' => 'waters', 'action' => 'add'], ['class' => 'btn btn-info float-right mt-4']) ?>
+
 
 
 <!--The Sort dropdown button-->
@@ -41,9 +36,9 @@
 
                     <div class="card m-5 zoom" style="width: 18rem;">
 <!--                        <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">-->
-                        <?= $this->Html->image('Aloe.jpg',['class'=>'card-img-top  ', 'alt' => 'succulent logo', 'url'=> ['controller'=>'Plants', 'action' => 'view' , $plant->id]]);?>
+                        <?= $this->Html->image('smaller baby toes.jpg',['class'=>'card-img-top  ', 'alt' => 'succulent logo', 'url'=> ['controller'=>'Plants', 'action' => 'view' , $plant->id]]);?>
                         <div class="card-body mx-auto ">
-                            <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'btn btn-primary')) ?>
+                            <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'btn btn-danger')) ?>
                         </div>
                     </div>
             </div>
