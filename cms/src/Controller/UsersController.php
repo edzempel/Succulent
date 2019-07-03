@@ -20,7 +20,8 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        $user_id = $this->Auth->user('id');
+        $users = $this->paginate($this->Users->find()->where(['id' => $user_id]));
 
         $this->set(compact('users'));
     }
@@ -34,6 +35,14 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        if ($id == null){
+            $id = $this->Auth->user('id');
+            if ($id == null){
+                $this->Flash->error(__('You are not authorized to access that location.'));
+
+                return $this->redirect(['controller'=> 'Users','action' => 'login']);
+            }
+        }
         $user = $this->Users->get($id, [
             'contain' => ['Plants']
         ]);
@@ -102,7 +111,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
     }
 
     public function login()
@@ -111,6 +120,9 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+                $this->redirect(['controller' => 'Plants', 'action' => 'index']);
+                //https://stackoverflow.com/questions/44308542/write-to-session-on-cakephp-3
+                $this->request->session()->write('username', $user['username']);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error('Your username or password is incorrect.');
@@ -130,6 +142,22 @@ class UsersController extends AppController
     public function logout()
     {
         $this->Flash->success('You are now logged out.');
+        $this->request->session()->write('username', null);
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+
+        // The add actions are always allowed to logged in users.
+        if (in_array($action, ['index'])) {
+
+            return true;
+        }
+
+        $user_id = $this->Auth->user('id');
+        return $user_id === $user['id'];
+
     }
 }
