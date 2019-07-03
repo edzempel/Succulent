@@ -4,6 +4,14 @@
  * @var \App\Model\Entity\Plant $plant
  */
 ?>
+
+<?= $this->Html->link(__('View Photos'), ['controller' => 'photos', 'action' => 'index'], ['class' => 'btn btn-danger float-right mt-4 mr-5']) ?>
+<?= $this->Html->link(__('Add Photo'), ['controller' => 'photos', 'action' => 'add'], ['class' => 'btn btn-danger float-right mt-4 mr-3']) ?>
+<?= $this->Html->link(__('View Pots'), ['controller' => 'pots', 'action' => 'index'], ['class' => 'btn btn-warning float-right mt-4 mr-5 ml-3']) ?>
+<?= $this->Html->link(__('Pot a Plant'), ['controller' => 'pots', 'action' => 'add'], ['class' => 'btn btn-warning float-right mt-4']) ?>
+<?= $this->Html->link(__('View Waters'), ['controller' => 'waters', 'action' => 'index'], ['class' => 'btn btn-info float-right mt-4 mr-5 ml-3']) ?>
+<?= $this->Html->link(__('Water a Plant'), ['controller' => 'waters', 'action' => 'add'], ['class' => 'btn btn-info float-right mt-4']) ?>
+
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>

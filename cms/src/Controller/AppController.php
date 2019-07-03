@@ -12,6 +12,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -47,6 +48,7 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 
         $this->loadComponent('Auth', [
+            'authorize' => 'Controller',
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -65,7 +67,8 @@ class AppController extends Controller
 
         // Allow the display action so our PagesController
         // continues to work. Also enable the read only actions.
-        $this->Auth->allow(['display', 'view', 'index']);
+//        $this->Auth->allow(['display', 'view', 'index']);
+        $this->Auth->allow(['display', 'view']); // don't allow index view by default
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -74,5 +77,11 @@ class AppController extends Controller
         //$this->loadComponent('Security');
 
         //TODO add access restriction https://book.cakephp.org/3.0/en/tutorials-and-examples/cms/authentication.html#restricting-article-access
+    }
+
+    public function isAuthorized($user)
+    {
+        // By default deny access.
+        return false;
     }
 }

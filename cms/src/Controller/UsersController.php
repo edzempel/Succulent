@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -19,7 +20,8 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        $user_id = $this->Auth->user('id');
+        $users = $this->paginate($this->Users->find()->where(['id' => $user_id]));
 
         $this->set(compact('users'));
     }
@@ -101,7 +103,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
     }
 
     public function login()
@@ -110,6 +112,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+                $this->redirect(['controller' => 'Plants', 'action' => 'index']);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error('Your username or password is incorrect.');
@@ -122,11 +125,28 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Auth->allow(['logout', 'add']);
+        // https://book.cakephp.org/3.0/en/controllers/components/authentication.html#configuration-options
+        $this->Auth->config(['loginRedirect' => ['controller' => 'Plants', 'action' => 'index']]);
     }
 
     public function logout()
     {
         $this->Flash->success('You are now logged out.');
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+
+        // The add actions are always allowed to logged in users.
+        if (in_array($action, ['index'])) {
+
+            return true;
+        }
+
+        $user_id = $this->Auth->user('id');
+        return $user_id === $user['id'];
+
     }
 }
