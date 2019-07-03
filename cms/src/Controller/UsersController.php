@@ -121,7 +121,8 @@ class UsersController extends AppController
             if ($user) {
                 $this->Auth->setUser($user);
                 $this->redirect(['controller' => 'Plants', 'action' => 'index']);
-//                $this->Session->write('username',$user->username);
+                //https://stackoverflow.com/questions/44308542/write-to-session-on-cakephp-3
+                $this->request->session()->write('username', $user['username']);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error('Your username or password is incorrect.');
@@ -141,6 +142,7 @@ class UsersController extends AppController
     public function logout()
     {
         $this->Flash->success('You are now logged out.');
+        $this->request->session()->write('username', null);
         return $this->redirect($this->Auth->logout());
     }
 

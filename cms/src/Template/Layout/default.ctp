@@ -14,7 +14,7 @@
  */
 
 $cakeDescription = 'Succulent';
-$username = $this->Session->read('username');
+$username = $this->request->session()->read('username');
 if($username == null){
     $username = 'Account';
 }
@@ -67,8 +67,8 @@ if($username == null){
                 Menu
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                <a><?= $this->Html->link(__($username), ['controller' => 'Users', 'action'=> 'view'], ['class' => 'dropdown-item font-weight-bold']) ?></a>
                 <a><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'dropdown-item']) ?></a>
-                <a><?= $this->Html->link(__($username), ['controller' => 'Users', 'action'=> 'view'], ['class' => 'dropdown-item']) ?></a>
                 <a><?= $this->Html->link(__('Library'), ['controller' => 'Plants', 'action'=> 'index'], ['class' => 'dropdown-item']) ?></a>
                 <a><?= $this->Html->link(__('Schedule'), ['action' => 'Schedule'], ['class' => 'dropdown-item']) ?></a>
                 <a><?= $this->Html->link(__('Settings'), ['action' => 'Settings'], ['class' => 'dropdown-item']) ?></a>
