@@ -28,7 +28,7 @@ class PlantsController extends AppController
             'maxLimit' => 100
         ];
         $user_id = $this->Auth->user('id');
-        $plants = $this->paginate($this->Plants->find()->where(['user_id'=> $user_id]), $settings);
+        $plants = $this->paginate($this->Plants->find()->where(['user_id' => $user_id]), $settings);
 
         $this->set(compact('plants'));
     }
@@ -64,12 +64,13 @@ class PlantsController extends AppController
 
             if ($this->Plants->save($plant)) {
                 $this->Flash->success(__('The plant has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                // build this query filter into the url to see most recent plant added
+                // ?sort=created&direction=desc
+                return $this->redirect(['action' => 'index', '?' => ['sort' => 'created', 'direction' => 'desc']]);
             }
             $this->Flash->error(__('The plant could not be saved. Please, try again.'));
         }
-        $user = $this->Plants->Users->find('list', ['limit' => 200]);
+//        $user = $this->Plants->Users->find('list', ['limit' => 200]); // not used
         $this->set('plant', $plant);
     }
 
@@ -123,7 +124,7 @@ class PlantsController extends AppController
         $action = $this->request->getParam('action');
 
         // The add actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'index'])) {
+        if (in_array($action, ['add', 'index', 'edit', 'delete'])) {
 
             return true;
         }
