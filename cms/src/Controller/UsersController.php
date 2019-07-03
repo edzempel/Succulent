@@ -35,6 +35,14 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        if ($id == null){
+            $id = $this->Auth->user('id');
+            if ($id == null){
+                $this->Flash->error(__('You are not authorized to access that location.'));
+
+                return $this->redirect(['controller'=> 'Users','action' => 'login']);
+            }
+        }
         $user = $this->Users->get($id, [
             'contain' => ['Plants']
         ]);
@@ -113,6 +121,7 @@ class UsersController extends AppController
             if ($user) {
                 $this->Auth->setUser($user);
                 $this->redirect(['controller' => 'Plants', 'action' => 'index']);
+//                $this->Session->write('username',$user->username);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error('Your username or password is incorrect.');
