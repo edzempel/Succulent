@@ -128,14 +128,14 @@ class PlantsController extends AppController
             return true;
         }
 
-        // All other actions require a slug.
-        $slug = $this->request->getParam('pass.0');
-        if (!$slug) {
+        // All other actions require an id.
+        $id = $this->request->getParam('pass.0');
+        if (!$id) {
             return false;
         }
 
         // Check that the article belongs to the current user.
-        $plant = $this->Plants->findBySlug($slug)->first();
+        $plant = $this->Plants->get($id)->first();
 
         return $plant->user_id === $user['id'];
 
