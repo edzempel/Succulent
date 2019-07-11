@@ -55,14 +55,14 @@ if($username == null){
 <div class="sticky-top border-bottom">
     <nav class="navbar navbar-light bg-white" role="navigation">
 
-        <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-4', 'alt' => 'succulent logo', 'width' => '150', 'height' => '150', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
+        <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-4', 'alt' => 'succulent logo', 'height' => '50', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
 
 
         <h1 class="header text-warning"><a><?= $this->fetch('title') ?></a></h1>
 
 
         <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle mr-5 " type="button" id="dropdownMenu2"
+            <button class="btn btn-success dropdown-toggle dropdown-menu-right " type="button" id="dropdownMenu2"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Menu
             </button>
