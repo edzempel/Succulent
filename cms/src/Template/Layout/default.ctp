@@ -33,7 +33,7 @@ if($username == null){
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
 
-    <?= $this->Html->css('bootstrap.min.css') ?>
+
     <?= $this->Html->css('bootstrap.css') ?>
     <?= $this->Html->css('custom.css') ?>
 
@@ -47,7 +47,7 @@ if($username == null){
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-
+    <script src="https://kit.fontawesome.com/ae9903d00e.js"></script>
 </head>
 <body class="background">
 
@@ -55,7 +55,7 @@ if($username == null){
 <div class="sticky-top border-bottom">
     <nav class="navbar navbar-light bg-white" role="navigation">
 
-        <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-4', 'alt' => 'succulent logo', 'height' => '50', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
+        <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-4', 'alt' => 'succulent logo', 'width' => '150', 'height' => '150', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
 
 
         <h1 class="header text-warning"><a><?= $this->fetch('title') ?></a></h1>
@@ -83,7 +83,7 @@ if($username == null){
 
 <?= $this->Flash->render() ?>
 
-<div class="">
+<div class="container">
     <?= $this->fetch('content') ?>
 </div>
 
