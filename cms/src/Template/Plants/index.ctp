@@ -7,6 +7,13 @@
 
 <div class="row my-3">
     <div class="col-12 ">
+
+
+        <div class="float-right ml-3">
+            <!--The top buttons on the page-->
+            <?= $this->Html->link(__('Add Plant'), ['controller' => 'plants', 'action' => 'add'], ['class' => 'btn btn-success']) ?>
+        </div>
+
         <div class="float-right ">
             <!--The Sort dropdown button-->
             <div class="dropdown ">
@@ -24,24 +31,19 @@
                 </div>
             </div>
         </div>
-
-        <div class="float-right mr-2">
-            <!--The top buttons on the page-->
-            <?= $this->Html->link(__('Add Plant'), ['controller' => 'plants', 'action' => 'add'], ['class' => 'btn btn-success']) ?>
-        </div>
-
     </div>
 </div>
+
 
 
 <div class="">
     <div class="row  mx-auto">
 
         <?php foreach ($plants as $plant): ?>
-            <div class="col-lg-3 col-md-4 col-6 py-3">
+            <div class="col-lg-3 col-md-4 col-6 p-4 ">
 
                 <div class="card zoom">
-                    <!--                        <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">-->
+                    <!-- <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">-->
                     <?= $this->Html->image('smaller baby toes.jpg', ['class' => 'card-img-top  ', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
                     <div class="card-body mx-auto ">
                         <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'btn btn-danger')) ?>
