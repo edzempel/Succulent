@@ -33,7 +33,7 @@ if($username == null){
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
 
-    <?= $this->Html->css('bootstrap.min.css') ?>
+
     <?= $this->Html->css('bootstrap.css') ?>
     <?= $this->Html->css('custom.css') ?>
 
@@ -47,7 +47,7 @@ if($username == null){
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-
+    <script src="https://kit.fontawesome.com/ae9903d00e.js"></script>
 </head>
 <body class="background">
 
@@ -62,7 +62,7 @@ if($username == null){
 
 
         <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle mr-5 " type="button" id="dropdownMenu2"
+            <button class="btn btn-success dropdown-toggle dropdown-menu-right " type="button" id="dropdownMenu2"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Menu
             </button>
@@ -83,7 +83,7 @@ if($username == null){
 
 <?= $this->Flash->render() ?>
 
-<div class="">
+<div class="container">
     <?= $this->fetch('content') ?>
 </div>
 
