@@ -69,7 +69,7 @@ if($username == null){
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
                 <a><?= $this->Html->link(__($username), ['controller' => 'Users', 'action'=> 'view'], ['class' => 'dropdown-item font-weight-bold']) ?></a>
                 <a><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'dropdown-item']) ?></a>
-                <a><?= $this->Html->link(__('Library'), ['controller' => 'Plants', 'action'=> 'index'], ['class' => 'dropdown-item']) ?></a>
+                <a><?= $this->Html->link(__('My plants'), ['controller' => 'Plants', 'action'=> 'index'], ['class' => 'dropdown-item']) ?></a>
                 <a><?= $this->Html->link(__('Schedule'), ['action' => 'Schedule'], ['class' => 'dropdown-item']) ?></a>
                 <a><?= $this->Html->link(__('Settings'), ['action' => 'Settings'], ['class' => 'dropdown-item']) ?></a>
                 <a class="dropdown-item" href="https://book.cakephp.org/3.0/">Help </a>
