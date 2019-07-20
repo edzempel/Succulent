@@ -24,3 +24,43 @@
 .Dwidth{
     width: 10%;
 }
+
+.text-com-name {
+    font-size: 300%;
+}
+
+.text-sci-name{
+    font-size: 150%;
+}
+
+.container-prof {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container-prof {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-prof {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-prof {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .container-prof {
+        max-width: 1250px;
+    }
+}
