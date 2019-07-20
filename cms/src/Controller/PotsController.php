@@ -108,4 +108,35 @@ class PotsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+
+        // The add actions are always allowed to logged in users.
+        if (in_array($action, ['add', 'index', 'edit', 'delete'])) {
+
+            return true;
+        }
+
+        // All other actions require an id.
+        $id = $this->request->getParam('pass.0');
+        if (!$id) {
+            return false;
+        }
+
+        // Check that the article belongs to the current user.
+        $pot = $this->Pots->get($id)->first();
+        $plant = $this->Plants->get($pot->plant_id)->first();
+
+        return $plant->user_id === $user['id'];
+
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+        // list what is allowed for unauthenticated users
+        $this->Auth->allow(['']);
+    }
 }

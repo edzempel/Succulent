@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -22,6 +23,8 @@ class WatersController extends AppController
         $this->paginate = [
             'contain' => ['Plants']
         ];
+        $user_id = $this->Auth->user('id');
+
         $waters = $this->paginate($this->Waters);
 
         $this->set(compact('waters'));
@@ -107,5 +110,45 @@ class WatersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+
+        // The add actions are always allowed to logged in users.
+        if (in_array($action, ['add', 'index', 'edit', 'delete', 'last'])) {
+
+            return true;
+        }
+
+        // All other actions require an id.
+        $id = $this->request->getParam('pass.0');
+        if (!$id) {
+            return false;
+        }
+
+        // Check that the article belongs to the current user.
+        $water = $this->Waters->get($id)->first();
+        $plant = $this->Plants->get($water->plant_id)->first();
+
+        return $plant->user_id === $user['id'];
+
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+        // list what is allowed for unauthenticated users
+        $this->Auth->allow(['']);
+    }
+
+    public function last($plant = 1){
+        $water = $this->Waters->find('all');
+        $water = $water->last();
+        $last = 1;
+        $this->request->session()->write('last_water_date', $last);
+        $this->request->session()->write('water', $water);
+
     }
 }

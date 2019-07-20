@@ -5,7 +5,6 @@
  */
 ?>
 
-
 <div class="row my-3">
     <div class="col-12 ">
 
@@ -20,7 +19,7 @@
             <div class="dropdown ">
                 <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-sort-amount-down"></i>
+                    Sort
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
                     <a class="dropdown-item"><?= $this->Paginator->sort('scientific_name') ?></a>
@@ -43,7 +42,6 @@
             <div class="col-lg-3 col-md-4 col-6 p-4 ">
 
                 <div class="card zoom">
-
                     <!-- <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">-->
                     <?= $this->Html->image('big baby toes.jpg', ['class' => 'card-img-top  ', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
 
@@ -53,9 +51,7 @@
                         <div> <?= $this->Html->link(__(($plant->scientific_name)), ['action' => 'view', $plant->id], array('class' => 'text-secondary text-left')) ?></div>
 
                     </div>
-
                 </div>
-
             </div>
 
 
@@ -71,5 +67,5 @@
         <?= $this->Paginator->next(__('next') . ' >') ?>
         <?= $this->Paginator->last(__('last') . ' >>') ?>
     </ul>
-    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} plant(s) out of {{count}} total')]) ?></p>
+    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
 </div>
