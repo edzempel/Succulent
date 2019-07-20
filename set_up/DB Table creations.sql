@@ -1,24 +1,29 @@
 USE succulent_cms;
 
+-- drop table if exists photos;
+-- drop table if exists pots;
+-- drop table if exists waters;
+-- drop table if exists plants;
+-- drop table if exists users;
+
 CREATE TABLE users (
                        id INT AUTO_INCREMENT PRIMARY KEY,
                        email VARCHAR(255) NOT NULL,
                        password VARCHAR(255) NOT NULL,
-                       username VARCHAR (10) NOT NULL,
-                       created DATETIME,
-                       modified DATETIME
+                       username VARCHAR (35) NOT NULL,
+                       createddate DATETIME,
+                       modifieddate DATETIME
 );
 
 CREATE TABLE plants (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         user_id INT NOT NULL,
                         scientific_name VARCHAR(255),
-                        common_name VARCHAR(255),
-                        slug VARCHAR(191) NOT NULL,
+                        common_name VARCHAR(255) NOT NULL,
+                        avg_water_days INT,
                         notes TEXT,
-                        created DATETIME,
-                        modified DATETIME,
-                        UNIQUE KEY (slug),
+                        createddate DATETIME,
+                        modifieddate DATETIME,
                         FOREIGN KEY user_key (user_id) REFERENCES users(id)
 );
 
@@ -41,13 +46,9 @@ CREATE TABLE photos (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         plant_id INT NOT NULL,
                         url VARCHAR(255) NOT NULL,
-                        created DATETIME,
-                        modified DATETIME,
+                        createddate DATETIME,
+                        modifieddate DATETIME,
                         is_profile BOOLEAN DEFAULT FALSE,
                         FOREIGN KEY plant_photo_key (plant_id) REFERENCES plants(id)
 
 );
-
-INSERT INTO users (email, password, username, created, modified)
-VALUES
-('cakephp@example.com', 'secret', 'cake_admin',NOW(), NOW());
