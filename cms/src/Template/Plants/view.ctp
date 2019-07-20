@@ -5,54 +5,45 @@
  */
 ?>
 
-<?= $this->Form->postLink(__(''), ['action' => 'delete', $plant->id], ['class' => 'btn btn-info float-right mt-4 mr-4 fas fa-trash-alt'] ,['confirm' => __('Are you sure you want to delete # {0}?', $plant->common_name)]) ?>
+<div class="container-prof">
+<div class="">
 
-<?= $this->Html->link(__(''), ['action' => 'edit', $plant->id], ['class' => 'btn btn-info float-right mt-4 mr-4 fas fa-edit']) ?>
+    <?= $this->Form->postLink(__(''), ['action' => 'delete', $plant->id], ['class' => 'btn btn-info float-right my-4 mr-4 fas fa-trash-alt fa-2x', 'confirm' => __('Are you sure you want to delete {0}?', $plant->common_name)]) ?>
+
+    <?= $this->Html->link(__(''), ['action' => 'edit', $plant->id], ['class' => 'btn btn-info float-right my-4 mr-4 fas fa-edit fa-2x']) ?>
+
+    <div class="font-weight-bold mt-4 text-info text-com-name"><?= h($plant->common_name) ?></div>
+    <div class="font-weight-normal mb-4 text-secondary text-sci-name"><?= h($plant->scientific_name) ?></div>
+
+</div>
 
 
-<div class="plants view large-9 medium-8 columns content">
-    <h3><?= h($plant->common_name) ?></h3>
-    <table class="vertical-table">
+<div>
+    <?= $this->Html->image('smaller baby toes1.jpg', ['class' => 'ml-4 mb-4', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+
+    <?= $this->Html->image('smaller baby toes1.jpg', ['class' => 'float-right mr-4 ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+
+</div>
+
+<p class="ml-4 mt-4 text-secondary text-sci-name">
+ Last Watered
+</p>
+
+<p class="ml-4 text-secondary text-sci-name">
+ Last Potted
+</p>
+
+<div class="mt-4">
+    <div class="text-com-name text-danger"> Notes </div>
+
+    <table cellpadding="0" cellspacing="0">
         <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $plant->has('user') ? $this->Html->link($plant->user->id, ['controller' => 'Users', 'action' => 'view', $plant->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Scientific Name') ?></th>
-            <td><?= h($plant->scientific_name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Common Name') ?></th>
-            <td><?= h($plant->common_name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Slug') ?></th>
-            <td><?= h($plant->slug) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($plant->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($plant->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($plant->modified) ?></td>
+            <td class="text-secondary text-sci-name"><?= $this->Text->autoParagraph(h($plant->notes)); ?></td>
         </tr>
     </table>
-    <div class="related">
-        <h4><?= __('Notes') ?></h4>
-        <table cellpadding="0" cellspacing="0">
 
-            <tr>
-                <td><?= $this->Text->autoParagraph(h($plant->notes)); ?></td>
-            </tr>
-        </table>
-
-    </div>
-
+</div>
 
 
 </div>
+
