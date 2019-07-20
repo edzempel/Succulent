@@ -117,7 +117,7 @@ class WatersController extends AppController
         $action = $this->request->getParam('action');
 
         // The add actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'index', 'edit', 'delete'])) {
+        if (in_array($action, ['add', 'index', 'edit', 'delete', 'last'])) {
 
             return true;
         }
@@ -141,5 +141,14 @@ class WatersController extends AppController
         parent::initialize();
         // list what is allowed for unauthenticated users
         $this->Auth->allow(['']);
+    }
+
+    public function last($plant = 1){
+        $water = $this->Waters->find('all');
+        $water = $water->last();
+        $last = 1;
+        $this->request->session()->write('last_water_date', $last);
+        $this->request->session()->write('water', $water);
+
     }
 }
