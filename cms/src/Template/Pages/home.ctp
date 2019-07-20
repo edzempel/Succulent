@@ -83,9 +83,6 @@ if ($username == null) {
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
                 <a><?= $this->Html->link(__($username), ['controller' => 'Users', 'action' => 'view'], ['class' => 'dropdown-item font-weight-bold']) ?></a>
                 <a><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'dropdown-item']) ?></a>
-                <a><?= $this->Html->link(__('Library'), ['controller' => 'Plants', 'action' => 'index'], ['class' => 'dropdown-item']) ?></a>
-                <a><?= $this->Html->link(__('Schedule'), ['action' => 'Schedule'], ['class' => 'dropdown-item']) ?></a>
-                <a><?= $this->Html->link(__('Settings'), ['action' => 'Settings'], ['class' => 'dropdown-item']) ?></a>
                 <a class="dropdown-item" href="https://book.cakephp.org/3.0/">Help </a>
                 <a><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'dropdown-item']) ?></a>
             </div>
@@ -95,11 +92,18 @@ if ($username == null) {
 </div>
 
 <div class="container">
-    <div class="jumbotron vertical-center row">
-        <h1 class="col text-center">Welcome to Succulent!</h1>
-        <?= $this->Html->link(__('Create Account'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-success']) ?>
-        <?= $this->fetch('content') ?>
+    <div class="col"></div>
+    <div class="vertical-center col">
+        <h1 class="text-center">Welcome to Succulent!</h1>
+        <div class="text-center">
+            <?= $this->Html->link(__('Create Account'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-success']) ?>
+        </div>
+        <div class="col"></div>
     </div>
+    <div class="col"></div>
+</div>
+<div class="container">
+    <?= $this->fetch('content') ?>
 </div>
 
 </body>
