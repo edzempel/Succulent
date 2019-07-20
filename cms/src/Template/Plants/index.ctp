@@ -28,7 +28,6 @@
                     <a class="dropdown-item"><?= $this->Paginator->sort('created') ?></a>
                     <a class="dropdown-item"><?= $this->Paginator->sort('modified') ?></a>
                     <a class="dropdown-item"> </a>
-0
                 </div>
             </div>
         </div>
@@ -46,12 +45,12 @@
                 <div class="card zoom">
 
                     <!-- <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">-->
-                    <?= $this->Html->image('smaller baby toes.jpg', ['class' => 'card-img-top  ', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                    <?= $this->Html->image('big baby toes.jpg', ['class' => 'card-img-top  ', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
 
                     <div class="card-body mx-auto ">
-                       <div> <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'stretched-link text-success')) ?></div>
+                       <div> <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'stretched-link text-success text-left')) ?></div>
 
-                        <div> <?= $this->Html->link(__(($plant->scientific_name)), ['action' => 'view', $plant->id], array('class' => '')) ?></div>
+                        <div> <?= $this->Html->link(__(($plant->scientific_name)), ['action' => 'view', $plant->id], array('class' => 'text-secondary text-left')) ?></div>
 
                     </div>
 
