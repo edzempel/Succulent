@@ -13,7 +13,7 @@
     </ul>
 </nav>
 <div class="waters index large-9 medium-8 columns content">
-    <h3><?= __('Waters') ?></h3>
+    <div>Watering History</div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
