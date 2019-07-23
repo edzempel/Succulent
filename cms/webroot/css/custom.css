@@ -1,7 +1,21 @@
 
+.succlogo{
+
+    width:150px;
+    height: auto;
+    transform: scale(1.2)
+}
 
 .header {
     margin-right: 8%;
+}
+
+h3, h4, h5 {
+    margin-bottom: 0;
+}
+
+.cus_margin{
+    margin-right: 120px;
 }
 
 
@@ -18,19 +32,35 @@
 
 .zoom:hover {
 
+    transform: scale(1.4);
+}
+
+.zoom-card {
+
+    transition: transform .3s;
+}
+
+
+.zoom-card:hover {
+
     transform: scale(1.2);
 }
 
-.Dwidth{
-    width: 10%;
-}
 
 .text-com-name {
     font-size: 300%;
 }
 
+.text-com-color {
+    color: #096e7e !important;
+}
+
 .text-sci-name{
     font-size: 150%;
+}
+
+text-btn-name {
+    font-size: 130%;
 }
 
 .container-prof {
@@ -63,4 +93,47 @@
     .container-prof {
         max-width: 1250px;
     }
+}
+
+
+.plantPicwidth {
+    width: 40%;
+    height: auto;
+}
+
+.container-profpic {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container-profpic {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-profpic {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-profpic {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-profpic {
+        max-width: 1100px;
+    }
+}
+
+/*Added to remove the arrow on Dropdown buttons*/
+.dropdown-toggle::after {
+    display:none;
 }

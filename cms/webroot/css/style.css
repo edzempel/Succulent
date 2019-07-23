@@ -89,6 +89,8 @@ legend {
 
 ul.pagination li a {
     color: rgba(0, 0 ,0 , 0.54);
+    font-size: 105%;
+    margin-top: 20px;
 }
 
 ul.pagination li.active a {
@@ -103,6 +105,7 @@ ul.pagination .disabled:hover a {
 
 .paginator {
     text-align: center;
+
 }
 
 .paginator ul.pagination li {

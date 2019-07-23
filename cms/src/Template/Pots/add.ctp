@@ -4,23 +4,16 @@
  * @var \App\Model\Entity\Pot $pot
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Pots'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Plants'), ['controller' => 'Plants', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Plant'), ['controller' => 'Plants', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="pots form large-9 medium-8 columns content">
+
+<div class="container-profpic">
     <?= $this->Form->create($pot) ?>
     <fieldset>
-        <legend><?= __('Add Pot') ?></legend>
-        <?php
-            echo $this->Form->control('plant_id', ['options' => $plants]);
-            echo $this->Form->control('pot_date', ['empty' => true]);
-        ?>
+        <legend class="text-info text-center mt-5"><?= __('Add Pot') ?></legend>
+
+        <div> <?= $this->Form->control('plant_id', ['options' => $plants]); ?></div>
+        <div class="mt-4"> <?= $this->Form->control('pot_date', ['empty' => true]); ?></div>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <button class="btn btn-danger float-right mt-3 text-sci-name" type="submit">Add</button>
     <?= $this->Form->end() ?>
+
 </div>

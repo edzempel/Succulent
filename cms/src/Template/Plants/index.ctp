@@ -11,22 +11,21 @@
 
         <div class="float-right ml-3">
             <!--The top buttons on the page-->
-            <?= $this->Html->link(__('Add Plant'), ['controller' => 'plants', 'action' => 'add'], ['class' => 'btn btn-success']) ?>
+            <?= $this->Html->link(__(''), ['controller' => 'plants', 'action' => 'add'], ['class' => 'btn btn-success fas fa-plus fa-2x']) ?>
         </div>
 
         <div class="float-right ">
             <!--The Sort dropdown button-->
             <div class="dropdown ">
-                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2"
+                <button class="btn btn-success dropdown-toggle fas fa-sort-alpha-down fa-2x" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Sort
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                    <a class="dropdown-item"><?= $this->Paginator->sort('scientific_name') ?></a>
-                    <a class="dropdown-item"><?= $this->Paginator->sort('common_name') ?></th></a>
-                    <a class="dropdown-item"><?= $this->Paginator->sort('created') ?></a>
-                    <a class="dropdown-item"><?= $this->Paginator->sort('modified') ?></a>
-                    <a class="dropdown-item"> </a>
+                    <div class="dropdown-item "><?= $this->Paginator->sort('scientific_name') ?></div>
+                    <div class="dropdown-item"><?= $this->Paginator->sort('common_name') ?></div>
+                    <div class="dropdown-item"><?= $this->Paginator->sort('created') ?></div>
+                    <div class="dropdown-item"><?= $this->Paginator->sort('modified') ?></div>
+
                 </div>
             </div>
         </div>
@@ -41,14 +40,14 @@
         <?php foreach ($plants as $plant): ?>
             <div class="col-lg-3 col-md-4 col-6 p-4 ">
 
-                <div class="card zoom">
+                <div class="card zoom-card">
                     <!-- <img src="img/Aloe.jpg" class="card-img-top" alt="Succulent">-->
-                    <?= $this->Html->image('big baby toes.jpg', ['class' => 'card-img-top  ', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                    <?= $this->Html->image('smaller wax agave.jpg', ['class' => 'card-img-top  ', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
 
-                    <div class="card-body mx-auto ">
-                       <div> <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'stretched-link text-success text-left')) ?></div>
+                    <div class="card-body ml-2">
+                       <h3> <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'stretched-link text-success text-decoration-none')) ?></h3>
 
-                        <div> <?= $this->Html->link(__(($plant->scientific_name)), ['action' => 'view', $plant->id], array('class' => 'text-secondary text-left')) ?></div>
+                        <h5> <?= $this->Html->link(__(($plant->scientific_name)), ['action' => 'view', $plant->id], array('class' => 'text-secondary text-left')) ?></h5>
 
                     </div>
                 </div>
@@ -67,5 +66,5 @@
         <?= $this->Paginator->next(__('next') . ' >') ?>
         <?= $this->Paginator->last(__('last') . ' >>') ?>
     </ul>
-    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} plant(s) out of {{count}} total')]) ?></p>
 </div>
