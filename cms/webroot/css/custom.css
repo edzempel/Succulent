@@ -6,11 +6,8 @@
     transform: scale(1.2)
 }
 
-.header {
-    margin-right: 8%;
-}
 
-h3, h4, h5 {
+h1, h3, h4, h5 {
     margin-bottom: 0;
 }
 
