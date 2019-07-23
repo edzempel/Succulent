@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+
  * @var \App\Model\Entity\Water[]|\Cake\Collection\CollectionInterface $waters
  */
 $days_since_last_watered = $this->request->session()->read('days_since_watered');
@@ -10,10 +11,12 @@ $average_days_between_waters = $this->request->session()->read('average_days_bet
 
 <div class="container-prof">
     <div class="mt-3 mb-4 btn btn-success position-relative">
-        <?= $this->Html->link(__(' '), $this->request->referer(), ['class' => ' text-decoration-none fas fa-spa fa-2x text-light']); ?>
+
         <?= $this->Html->link(__(' '), $this->request->referer(), ['class' => ' text-decoration-none fas fa-arrow-left fa-2x text-light stretched-link']); ?>
-        <?= $this->Html->link(__(' Go back'), $this->request->referer(), ['class' => 'text-decoration-none text-sci-name text-light ']); ?>
+
     </div>
+
+<!--    <div class="font-weight-bold mt-4 text-dark text-com-name text-com-color"> h($plant->common_name) ?></div>-->
 
     <div class="row ">
 
