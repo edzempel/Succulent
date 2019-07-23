@@ -115,9 +115,10 @@ class WatersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $water = $this->Waters->patchEntity($water, $this->request->getData());
             if ($this->Waters->save($water)) {
+
                 $this->Flash->success(__('The water has been saved.'));
 
-                return $this->redirect(['action' => 'index', $id]);
+                return $this->redirect(['action' => 'index', $water->plant_id]);
             }
             $this->Flash->error(__('The water could not be saved. Please, try again.'));
         }
