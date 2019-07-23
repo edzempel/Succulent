@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Plants Controller
@@ -46,6 +47,40 @@ class PlantsController extends AppController
             'contain' => ['Users', 'Photos', 'Pots', 'Waters']
         ]);
 
+        $this->loadModel('Waters');
+        $water = $this->Waters->find();
+        $water->where(['plant_id' => $id]);
+        $water->order(['water_date' => 'DESC']);
+        $water = $water->last();
+        $water = json_decode($water);
+        if (is_object($water)) {
+            $lastWatered = $water->water_date;
+            $lastWatered = new Time($lastWatered);
+            $lastWatered = $lastWatered->format('D, j M Y');
+
+        } else {
+            $lastWatered = 'Date unknown';
+            $this->Flash->error('The watered plant with id: ' . htmlspecialchars($id) . ' is invalid');
+        }
+
+        $this->loadModel('Pots');
+        $pot = $this->Pots->find();
+        $pot->where(['plant_id' => $id]);
+        $pot->order(['pot_date' => 'DESC']);
+        $pot = $pot->last();
+        $pot = json_decode($pot);
+        if (is_object($pot)) {
+            $lastPotted = $pot->pot_date;
+            $lastPotted = new Time($lastPotted);
+            $lastPotted = $lastPotted->format('D, j M Y');
+
+        } else {
+            $lastPotted = 'Date unknown';
+            $this->Flash->error('The potted plant with id: ' . htmlspecialchars($id) . ' is invalid');
+        }
+
+        $this->request->session()->write('last_watered', $lastWatered);
+        $this->request->session()->write('last_potted', $lastPotted);
         $this->set('plant', $plant);
     }
 
