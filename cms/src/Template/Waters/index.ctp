@@ -44,9 +44,9 @@ $average_days_between_waters = $this->request->session()->read('average_days_bet
     </div>
 
 
-    <div class="">
+    <div class="container-profpic">
         <div class="text-sci-name text-com-color mt-5 mb-2">Watering History</div>
-        <table cellpadding="0" cellspacing="0">
+        <table class="">
             <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('water_date') ?></th>

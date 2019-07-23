@@ -4,17 +4,23 @@
  * @var \App\Model\Entity\Plant $plant
  */
 ?>
+<div class="container-prof">
+<div class="mt-3 btn btn-success position-relative">
 
+    <?= $this->Html->link(__(''),['controller' => 'Plants', 'action' => 'index'], ['class' => ' text-decoration-none fas fa-arrow-left text-light stretched-link']); ?>
+    <?= $this->Html->link(__('My Plants'),['controller' => 'Plants', 'action' => 'index'], ['class' => ' text-decoration-none text-light']); ?>
 
+</div>
+</div>
 <div class="container-profpic">
 
     <div class="row">
         <div class="col-12">
-            <?= $this->Form->postLink(__(''), ['action' => 'delete', $plant->id], ['class' => 'btn btn-danger float-right mt-5 mr-4 fas fa-trash-alt fa-2x', 'confirm' => __('Are you sure you want to delete {0}?', $plant->common_name)]) ?>
+            <?= $this->Form->postLink(__(''), ['action' => 'delete', $plant->id], ['class' => 'btn btn-danger float-right mt-3 mr-4 fas fa-trash-alt fa-2x', 'confirm' => __('Are you sure you want to delete {0}?', $plant->common_name)]) ?>
 
-            <?= $this->Html->link(__(''), ['action' => 'edit', $plant->id], ['class' => 'btn btn-secondary float-right mt-5 mr-4 fas fa-pen fa-2x']) ?>
+            <?= $this->Html->link(__(''), ['action' => 'edit', $plant->id], ['class' => 'btn btn-secondary float-right mt-3 mr-4 fas fa-pen fa-2x']) ?>
 
-            <div class="font-weight-bold mt-4 text-dark text-com-name text-com-color"><?= h($plant->common_name) ?></div>
+            <div class="font-weight-bold text-dark text-com-name text-com-color"><?= h($plant->common_name) ?></div>
             <div class="font-weight-normal mb-4 text-secondary text-sci-name"><?= h($plant->scientific_name) ?></div>
         </div>
     </div>
@@ -64,11 +70,11 @@
 </div>
 <div class="container-prof">
 
-    <div class="mt-4">
+    <div class="mt-4 py-3">
         <div class="text-com-name text-danger"> Notes</div>
 
 
-        <div class="bg-light p-2"><?= $this->Text->autoParagraph(h($plant->notes)); ?></div>
+        <div class="bg-light px-2 pt-2 border"><?= $this->Text->autoParagraph(h($plant->notes)); ?></div>
 
 
     </div>
