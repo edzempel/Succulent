@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -17,12 +18,12 @@ class PotsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($plant_id = null)
     {
         $this->paginate = [
             'contain' => ['Plants']
         ];
-        $pots = $this->paginate($this->Pots);
+        $pots = $this->paginate($this->Pots->find('all')->where(['plant_id' => $plant_id])->orderDesc('pot_Date'));
 
         $this->set(compact('pots'));
     }
