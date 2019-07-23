@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Waters Controller
@@ -143,12 +144,38 @@ class WatersController extends AppController
         $this->Auth->allow(['']);
     }
 
-    public function last($plant = 1){
-        $water = $this->Waters->find('all');
+    public function last($plant = 1)
+    {
+        // https://book.cakephp.org/3.0/en/orm/query-builder.html
+        $water = $this->Waters->find();
+        $water->where(['plant_id' => $plant]);
+        $water->order(['water_date' => 'DESC']);
         $water = $water->last();
-        $last = 1;
-        $this->request->session()->write('last_water_date', $last);
-        $this->request->session()->write('water', $water);
+        $water = json_decode($water);
+        $difference = 'N/A';
+        if (is_object($water)) {
+            $water = $water->water_date;
+
+            $water = new Time($water);
+            $now = Time::now();
+            $difference = $now->diff($water, $absolute = false);
+            $difference = $difference->format('%R%a');
+            $sign = substr($difference, 0, 1);
+            if ($sign == '-') {
+                $difference = substr($difference, 1);
+            }
+            if ($sign == '+') {
+                $difference = '0';
+                $this->Flash->error('The date you last watered the plant is in the future.');
+            }
+
+        } else {
+            $this->Flash->error('The plant with id: ' . htmlspecialchars($plant) . ' is invalid');
+        }
+
+//        $this->request->session()->write('water', $water); // for debugging
+        $this->request->session()->write('difference', $difference);
+
 
     }
 }
