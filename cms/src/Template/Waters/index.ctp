@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Water[]|\Cake\Collection\CollectionInterface $waters
  */
 $days_since_last_watered = $this->request->session()->read('days_since_watered');
+$average_days_between_waters = $this->request->session()->read('average_days_between_waters');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -14,6 +15,7 @@ $days_since_last_watered = $this->request->session()->read('days_since_watered')
     </ul>
 </nav>
 <div class="container">
+    <div><?=$this->Html->link(__('Go back'), $this->request->referer()); ?></div>
     <div class="card">
         <div class="card-body mx-auto">
             <h2 class="card-title">
@@ -25,9 +27,9 @@ $days_since_last_watered = $this->request->session()->read('days_since_watered')
     <div class="card">
         <div class="card-body mx-auto">
             <h2 class="card-title">
-                <?= $days_since_last_watered ?>
+                <?= $average_days_between_waters ?>
             </h2>
-            <p class="card-text">Days since last watering</p>
+            <p class="card-text">Average days between watering</p>
         </div>
     </div>
 </div>

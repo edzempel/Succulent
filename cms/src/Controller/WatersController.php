@@ -42,6 +42,24 @@ class WatersController extends AppController
         }
         $this->request->session()->write('days_since_watered', $difference);
 
+        // descending dates are the most recent first
+        $newest = $waters->first();
+        $newest = new Time($newest['water_date']);
+//        echo $newest.'<br />';
+        $oldest = $waters->last();
+        $oldest = new Time($oldest['water_date']);
+//        echo $oldest.'<br />';
+        $count = $waters->count();
+        $count -=1;
+        if($count == 0){
+            $count = 1;
+        }
+        $days_between_first_and_last_watering = $newest->diff($oldest)->days;
+//        echo $days_between_first_and_last_watering;
+        $average_days_between_waters = $days_between_first_and_last_watering / $count;
+        $average_days_between_waters = number_format($average_days_between_waters,0);
+        $this->request->session()->write('average_days_between_waters', $average_days_between_waters);
+
         $this->set(compact('waters'));
     }
 
