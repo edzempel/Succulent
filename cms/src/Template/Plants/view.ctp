@@ -53,7 +53,7 @@
     <div class="row my-3">
         <div class="col-12">
 
-            <?= $this->Html->link(__('Last Potted: ' . $this->request->session()->read('last_watered')), ['controller' => 'Pots', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none']) ?>
+            <?= $this->Html->link(__('Last Potted: ' . $this->request->session()->read('last_potted')), ['controller' => 'Pots', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none']) ?>
 
 
             <?= $this->Html->link(__(''), ['controller' => 'Pots', 'action' => 'add'], ['class' => 'btn btn-warning fas fa-spa ml-5 fa-2x']) ?>
