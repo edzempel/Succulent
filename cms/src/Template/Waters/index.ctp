@@ -9,7 +9,9 @@ $average_days_between_waters = $this->request->session()->read('average_days_bet
 ?>
 
 <div class="container-prof">
-    <div class="mt-3 mb-4"><?= $this->Html->link(__('Go back'), $this->request->referer(), ['class' => 'text-decoration-none text-sci-name text-primary']); ?>
+    <div class="mt-3 mb-4 btn btn-dark">
+        <?= $this->Html->link(__(' '), $this->request->referer(), ['class' => ' text-decoration-none fas fa-arrow-left fa-2x text-light']); ?>
+        <?= $this->Html->link(__(' Go back'), $this->request->referer(), ['class' => 'text-decoration-none text-sci-name text-light']); ?>
     </div>
 
     <div class="row ">
