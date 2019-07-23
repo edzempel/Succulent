@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Waters Controller
@@ -18,14 +19,46 @@ class WatersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($plant_id = null)
     {
         $this->paginate = [
             'contain' => ['Plants']
         ];
         $user_id = $this->Auth->user('id');
 
-        $waters = $this->paginate($this->Waters);
+        $waters = $this->paginate($this->Waters->find('all')->where(['plant_id' => $plant_id])->orderDesc('water_date'));
+        $last_watered = $waters->first();
+        $last_watered = new Time($last_watered['water_date']);
+        $now = Time::now();
+        $difference = $now->diff($last_watered, $absolute = false);
+        $difference = $difference->format('%R%a');
+        $sign = substr($difference, 0, 1);
+        if ($sign == '-') {
+            $difference = substr($difference, 1);
+        }
+        if ($sign == '+') {
+            $difference = '0';
+            $this->Flash->error('The date you last watered the plant is in the future.');
+        }
+        $this->request->session()->write('days_since_watered', $difference);
+
+        // descending dates are the most recent first
+        $newest = $waters->first();
+        $newest = new Time($newest['water_date']);
+//        echo $newest.'<br />';
+        $oldest = $waters->last();
+        $oldest = new Time($oldest['water_date']);
+//        echo $oldest.'<br />';
+        $count = $waters->count();
+        $count -=1;
+        if($count == 0){
+            $count = 1;
+        }
+        $days_between_first_and_last_watering = $newest->diff($oldest)->days;
+//        echo $days_between_first_and_last_watering;
+        $average_days_between_waters = $days_between_first_and_last_watering / $count;
+        $average_days_between_waters = number_format($average_days_between_waters,0);
+        $this->request->session()->write('average_days_between_waters', $average_days_between_waters);
 
         $this->set(compact('waters'));
     }
@@ -143,12 +176,56 @@ class WatersController extends AppController
         $this->Auth->allow(['']);
     }
 
-    public function last($plant = 1){
-        $water = $this->Waters->find('all');
+    public function last($plant = 1)
+    {
+        // https://book.cakephp.org/3.0/en/orm/query-builder.html
+        $water = $this->Waters->find();
+        $water->where(['plant_id' => $plant]);
+        $water->order(['water_date' => 'DESC']);
         $water = $water->last();
-        $last = 1;
-        $this->request->session()->write('last_water_date', $last);
-        $this->request->session()->write('water', $water);
+        $water = json_decode($water);
+        $difference = 'N/A';
+        if (is_object($water)) {
+            $water = $water->water_date;
 
+            $water = new Time($water);
+            $now = Time::now();
+            $difference = $now->diff($water, $absolute = false);
+            $difference = $difference->format('%R%a');
+            $sign = substr($difference, 0, 1);
+            if ($sign == '-') {
+                $difference = substr($difference, 1);
+            }
+            if ($sign == '+') {
+                $difference = '0';
+                $this->Flash->error('The date you last watered the plant is in the future.');
+            }
+
+        } else {
+            $this->Flash->error('The plant with id: ' . htmlspecialchars($plant) . ' is invalid');
+        }
+
+//        $this->request->session()->write('water', $water); // for debugging
+        $this->request->session()->write('difference', $difference);
+
+
+    }
+
+    public function lastWatered($plant_id){
+        $lastWatered = '';
+
+        $water = $this->Waters->find();
+        $water->where(['plant_id' => $plant_id]);
+        $water->order(['water_date' => 'DESC']);
+        $water = $water->last();
+        $water = json_decode($water);
+        if (is_object($water)) {
+            $lastWatered = $water->water_date;
+
+        } else {
+            $this->Flash->error('The plant with id: ' . htmlspecialchars($plant_id) . ' is invalid');
+        }
+
+        return $lastWatered;
     }
 }
