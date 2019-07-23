@@ -33,9 +33,9 @@
 
         <div class="row">
             <div class="col-12">
-                <?= $this->Html->image('young wax.JPG', ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image('smaller perle von.jpg', ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
 
-                <?= $this->Html->image('wax agave.jpg', ['class' => 'float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image('smaller wax agave.jpg', ['class' => 'float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
             </div>
         </div>
     </div>
