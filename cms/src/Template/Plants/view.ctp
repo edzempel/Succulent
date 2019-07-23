@@ -42,7 +42,8 @@
 
     <div class="row my-3">
         <div class="col-12">
-            <?= $this->Html->link(__('Last Watered'), ['controller' => 'Waters', 'action' => 'index'], ['class' => 'text-secondary text-sci-name text-decoration-none mr-2']) ?>
+
+            <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none mr-2']) ?>
 
             <?= $this->Html->link(__(''), ['controller' => 'Waters', 'action' => 'add'], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
 
@@ -51,12 +52,15 @@
 
     <div class="row my-3">
         <div class="col-12">
-            <?= $this->Html->link(__('Last Potted'), ['controller' => 'Pots', 'action' => 'index'], ['class' => 'text-secondary text-sci-name text-decoration-none ']) ?>
+
+            <?= $this->Html->link(__('Last Potted: ' . $this->request->session()->read('last_watered')), ['controller' => 'Pots', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none']) ?>
+
 
             <?= $this->Html->link(__(''), ['controller' => 'Pots', 'action' => 'add'], ['class' => 'btn btn-warning fas fa-spa ml-5 fa-2x']) ?>
 
         </div>
     </div>
+
 </div>
 <div class="container-prof">
 
