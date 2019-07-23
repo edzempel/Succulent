@@ -27,6 +27,20 @@ class WatersController extends AppController
         $user_id = $this->Auth->user('id');
 
         $waters = $this->paginate($this->Waters->find('all')->where(['plant_id' => $plant_id])->orderDesc('water_date'));
+        $last_watered = $waters->first();
+        $last_watered = new Time($last_watered['water_date']);
+        $now = Time::now();
+        $difference = $now->diff($last_watered, $absolute = false);
+        $difference = $difference->format('%R%a');
+        $sign = substr($difference, 0, 1);
+        if ($sign == '-') {
+            $difference = substr($difference, 1);
+        }
+        if ($sign == '+') {
+            $difference = '0';
+            $this->Flash->error('The date you last watered the plant is in the future.');
+        }
+        $this->request->session()->write('days_since_watered', $difference);
 
         $this->set(compact('waters'));
     }
