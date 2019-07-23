@@ -19,14 +19,14 @@ class WatersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($plant_id = null)
     {
         $this->paginate = [
             'contain' => ['Plants']
         ];
         $user_id = $this->Auth->user('id');
 
-        $waters = $this->paginate($this->Waters);
+        $waters = $this->paginate($this->Waters->find('all')->where(['plant_id' => $plant_id])->orderDesc('water_date'));
 
         $this->set(compact('waters'));
     }
