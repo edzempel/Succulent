@@ -18,8 +18,8 @@ $days_since_potted = $this->request->session()->read('days_since_potted');
 
     </div>
 
+    <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?></div>
     <div class="row ">
-        <h2><?= $common_name; ?></h2>
         <div class="card col-lg-4 col-md-4 mx-5 my-3 mx-auto">
             <div class="card-body text-center">
                 <h2 class="card-title">
