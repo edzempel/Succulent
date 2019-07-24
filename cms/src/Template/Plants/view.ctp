@@ -31,9 +31,9 @@
 
         <div class="row">
 
-                <div class="col text-sci-name text-secondary ">Oldest Photo</div>
+            <div class="col text-sci-name text-secondary ">Oldest Photo</div>
 
-                <div class="col text-sci-name text-secondary text-center cus_margin">Newest Photo</div>
+            <div class="col text-sci-name text-secondary text-center cus_margin">Newest Photo</div>
         </div>
 
 
@@ -51,7 +51,7 @@
 
             <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none mr-2']) ?>
 
-            <?= $this->Html->link(__(''), ['controller' => 'Waters', 'action' => 'add'], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
+            <?= $this->Html->link(__(''), ['controller' => 'Waters', 'action' => 'add', $plant->id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
 
         </div>
     </div>

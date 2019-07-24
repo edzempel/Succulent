@@ -59,8 +59,7 @@ class PlantsController extends AppController
             $lastWatered = $lastWatered->format('D, j M Y');
 
         } else {
-            $lastWatered = 'Date unknown';
-            $this->Flash->error('The watered plant with id: ' . htmlspecialchars($id) . ' is invalid');
+            $lastWatered = 'not watered yet';
         }
 
         $this->loadModel('Pots');
@@ -75,8 +74,7 @@ class PlantsController extends AppController
             $lastPotted = $lastPotted->format('D, j M Y');
 
         } else {
-            $lastPotted = 'Date unknown';
-            $this->Flash->error('The potted plant with id: ' . htmlspecialchars($id) . ' is invalid');
+            $lastPotted = 'not potted yet';
         }
 
         $this->request->session()->write('last_watered', $lastWatered);
