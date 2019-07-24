@@ -67,7 +67,7 @@ class PotsController extends AppController
             if ($this->Pots->save($pot)) {
                 $this->Flash->success(__('The pot has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=> 'plants', 'action' => 'view', $plant_id]);
             }
             $this->Flash->error(__('The pot could not be saved. Please, try again.'));
         }
