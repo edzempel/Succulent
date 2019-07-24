@@ -51,7 +51,9 @@
 
             <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none mr-2']) ?>
 
-            <?= $this->Html->link(__(''), ['controller' => 'Waters', 'action' => 'add', $plant->id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
+            <?= $this->Html->link(__(' +'), ['controller' => 'Waters', 'action' => 'add', $plant->id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
+
+
 
         </div>
     </div>
@@ -62,7 +64,7 @@
             <?= $this->Html->link(__('Last Potted: ' . $this->request->session()->read('last_potted')), ['controller' => 'Pots', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none']) ?>
 
 
-            <?= $this->Html->link(__(''), ['controller' => 'Pots', 'action' => 'add'], ['class' => 'btn btn-warning fas fa-spa ml-5 fa-2x']) ?>
+            <?= $this->Html->link(__(' +'), ['controller' => 'Pots', 'action' => 'add'], ['class' => 'btn btn-warning fas fa-spa ml-5 fa-2x']) ?>
 
         </div>
     </div>
