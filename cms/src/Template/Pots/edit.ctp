@@ -3,30 +3,19 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Pot $pot
  */
+$common_name = $this->request->session()->read('commmon_name');
+$plant_id = $this->request->session()->read('plant_id');
+
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $pot->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $pot->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Pots'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Plants'), ['controller' => 'Plants', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Plant'), ['controller' => 'Plants', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="pots form large-9 medium-8 columns content">
+<div class="container-profpic">
     <?= $this->Form->create($pot) ?>
     <fieldset>
-        <legend><?= __('Edit Pot') ?></legend>
+        <legend class="mb-4 mt-5 text-center text-info "><?= __('Edit pot for ' . $common_name) ?></legend>
         <?php
-            echo $this->Form->control('plant_id', ['options' => $plants]);
-            echo $this->Form->control('pot_date', ['empty' => true]);
+        echo $this->Form->control('pot_date', ['empty' => true]);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <button class="btn btn-info float-right mt-3 text-sci-name" type="submit">Save</button>
+    <div><?= $this->Html->link(__('Cancel'), ['controller' => 'pots', 'action' => 'index', $plant_id], ['class' => 'btn btn-danger mr-3 mt-3 text-sci-name float-right']) ?></div>
     <?= $this->Form->end() ?>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Plants Controller
@@ -46,6 +47,38 @@ class PlantsController extends AppController
             'contain' => ['Users', 'Photos', 'Pots', 'Waters']
         ]);
 
+        $this->loadModel('Waters');
+        $water = $this->Waters->find();
+        $water->where(['plant_id' => $id]);
+        $water->order(['water_date' => 'DESC']);
+        $water = $water->first();
+        $water = json_decode($water);
+        if (is_object($water)) {
+            $lastWatered = $water->water_date;
+            $lastWatered = new Time($lastWatered);
+            $lastWatered = $lastWatered->format('D, j M Y');
+
+        } else {
+            $lastWatered = 'not watered yet';
+        }
+
+        $this->loadModel('Pots');
+        $pot = $this->Pots->find();
+        $pot->where(['plant_id' => $id]);
+        $pot->order(['pot_date' => 'DESC']);
+        $pot = $pot->first();
+        $pot = json_decode($pot);
+        if (is_object($pot)) {
+            $lastPotted = $pot->pot_date;
+            $lastPotted = new Time($lastPotted);
+            $lastPotted = $lastPotted->format('D, j M Y');
+
+        } else {
+            $lastPotted = 'not potted yet';
+        }
+
+        $this->request->session()->write('last_watered', $lastWatered);
+        $this->request->session()->write('last_potted', $lastPotted);
         $this->set('plant', $plant);
     }
 
@@ -90,7 +123,7 @@ class PlantsController extends AppController
             if ($this->Plants->save($plant)) {
                 $this->Flash->success(__('The plant has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'plants', 'action' => 'view', $plant->id]);
             }
             $this->Flash->error(__('The plant could not be saved. Please, try again.'));
         }

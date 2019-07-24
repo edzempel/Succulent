@@ -4,152 +4,83 @@
  * @var \App\Model\Entity\Plant $plant
  */
 ?>
+<div class="container-prof">
+<div class="mt-3 btn btn-success position-relative">
 
-<?= $this->Html->link(__('View Photos'), ['controller' => 'photos', 'action' => 'index'], ['class' => 'btn btn-danger float-right mt-4 mr-5']) ?>
-<?= $this->Html->link(__('Add Photo'), ['controller' => 'photos', 'action' => 'add'], ['class' => 'btn btn-danger float-right mt-4 mr-3']) ?>
-<?= $this->Html->link(__('View Pots'), ['controller' => 'pots', 'action' => 'index'], ['class' => 'btn btn-warning float-right mt-4 mr-5 ml-3']) ?>
-<?= $this->Html->link(__('Pot a Plant'), ['controller' => 'pots', 'action' => 'add'], ['class' => 'btn btn-warning float-right mt-4']) ?>
-<?= $this->Html->link(__('View Waters'), ['controller' => 'waters', 'action' => 'index'], ['class' => 'btn btn-info float-right mt-4 mr-5 ml-3']) ?>
-<?= $this->Html->link(__('Water a Plant'), ['controller' => 'waters', 'action' => 'add'], ['class' => 'btn btn-info float-right mt-4']) ?>
+    <?= $this->Html->link(__(''),['controller' => 'Plants', 'action' => 'index'], ['class' => ' text-decoration-none fas fa-arrow-left text-light stretched-link']); ?>
+    <?= $this->Html->link(__('My Plants'),['controller' => 'Plants', 'action' => 'index'], ['class' => ' text-decoration-none text-light']); ?>
 
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Plant'), ['action' => 'edit', $plant->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Plant'), ['action' => 'delete', $plant->id], ['confirm' => __('Are you sure you want to delete # {0}?', $plant->common_name)]) ?> </li>
-        <li><?= $this->Html->link(__('List Plants'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Plant'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Photos'), ['controller' => 'Photos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Photo'), ['controller' => 'Photos', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Pots'), ['controller' => 'Pots', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Pot'), ['controller' => 'Pots', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Waters'), ['controller' => 'Waters', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Water'), ['controller' => 'Waters', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="plants view large-9 medium-8 columns content">
-    <h3><?= h($plant->common_name) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $plant->has('user') ? $this->Html->link($plant->user->id, ['controller' => 'Users', 'action' => 'view', $plant->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Scientific Name') ?></th>
-            <td><?= h($plant->scientific_name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Common Name') ?></th>
-            <td><?= h($plant->common_name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Slug') ?></th>
-            <td><?= h($plant->slug) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($plant->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($plant->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($plant->modified) ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Notes') ?></h4>
-        <table cellpadding="0" cellspacing="0">
-
-            <tr>
-                <td><?= $this->Text->autoParagraph(h($plant->notes)); ?></td>
-            </tr>
-        </table>
-
-    </div>
-    <div class="related">
-        <h4><?= __('Related Photos') ?></h4>
-        <?php if (!empty($plant->photos)): ?>
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th scope="col"><?= __('Id') ?></th>
-                    <th scope="col"><?= __('Plant Id') ?></th>
-                    <th scope="col"><?= __('Url') ?></th>
-                    <th scope="col"><?= __('Created') ?></th>
-                    <th scope="col"><?= __('Modified') ?></th>
-                    <th scope="col"><?= __('Is Profile') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
-                </tr>
-                <?php foreach ($plant->photos as $photos): ?>
-                    <tr>
-                        <td><?= h($photos->id) ?></td>
-                        <td><?= h($photos->plant_id) ?></td>
-                        <td><?= h($photos->url) ?></td>
-                        <td><?= h($photos->created) ?></td>
-                        <td><?= h($photos->modified) ?></td>
-                        <td><?= h($photos->is_profile) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link(__('View'), ['controller' => 'Photos', 'action' => 'view', $photos->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['controller' => 'Photos', 'action' => 'edit', $photos->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['controller' => 'Photos', 'action' => 'delete', $photos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $photos->id)]) ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Pots') ?></h4>
-        <?php if (!empty($plant->pots)): ?>
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th scope="col"><?= __('Id') ?></th>
-                    <th scope="col"><?= __('Plant Id') ?></th>
-                    <th scope="col"><?= __('Pot Date') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
-                </tr>
-                <?php foreach ($plant->pots as $pots): ?>
-                    <tr>
-                        <td><?= h($pots->id) ?></td>
-                        <td><?= h($pots->plant_id) ?></td>
-                        <td><?= h($pots->pot_date) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link(__('View'), ['controller' => 'Pots', 'action' => 'view', $pots->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['controller' => 'Pots', 'action' => 'edit', $pots->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['controller' => 'Pots', 'action' => 'delete', $pots->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pots->id)]) ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Waters') ?></h4>
-        <?php if (!empty($plant->waters)): ?>
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th scope="col"><?= __('Id') ?></th>
-                    <th scope="col"><?= __('Plant Id') ?></th>
-                    <th scope="col"><?= __('Water Date') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
-                </tr>
-                <?php foreach ($plant->waters as $waters): ?>
-                    <tr>
-                        <td><?= h($waters->id) ?></td>
-                        <td><?= h($waters->plant_id) ?></td>
-                        <td><?= h($waters->water_date) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link(__('View'), ['controller' => 'Waters', 'action' => 'view', $waters->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['controller' => 'Waters', 'action' => 'edit', $waters->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['controller' => 'Waters', 'action' => 'delete', $waters->id], ['confirm' => __('Are you sure you want to delete # {0}?', $waters->id)]) ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
-    </div>
 </div>
+</div>
+<div class="container-profpic">
+
+    <div class="row">
+        <div class="col-12">
+            <?= $this->Form->postLink(__(''), ['action' => 'delete', $plant->id], ['class' => 'btn btn-danger float-right mt-3 mr-4 fas fa-trash-alt fa-2x', 'confirm' => __('Are you sure you want to delete {0}?', $plant->common_name)]) ?>
+
+            <?= $this->Html->link(__(''), ['action' => 'edit', $plant->id], ['class' => 'btn btn-secondary float-right mt-3 mr-4 fas fa-pen fa-2x']) ?>
+
+            <div class="font-weight-bold text-dark text-com-name text-com-color"><?= h($plant->common_name) ?></div>
+            <div class="font-weight-normal mb-4 text-secondary text-sci-name"><?= h($plant->scientific_name) ?></div>
+        </div>
+    </div>
+
+
+    <div class="">
+
+
+        <div class="row">
+
+            <div class="col text-sci-name text-secondary ">Oldest Photo</div>
+
+            <div class="col text-sci-name text-secondary text-center cus_margin">Newest Photo</div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <?= $this->Html->image('smaller wax agave.jpg', ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+
+                <?= $this->Html->image('old-agave.jpg', ['class' => 'float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+
+            <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none mr-2']) ?>
+
+            <?= $this->Html->link(__(' +'), ['controller' => 'Waters', 'action' => 'add', $plant->id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
+
+
+
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+
+            <?= $this->Html->link(__('Last Potted: ' . $this->request->session()->read('last_potted')), ['controller' => 'Pots', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none']) ?>
+
+
+            <?= $this->Html->link(__(' +'), ['controller' => 'Pots', 'action' => 'add', $plant->id], ['class' => 'btn btn-warning fas fa-spa ml-5 fa-2x']) ?>
+
+        </div>
+    </div>
+
+</div>
+<div class="container-prof">
+
+    <div class="mt-4 py-3">
+        <div class="text-com-name text-danger"> Notes</div>
+
+
+        <div class="bg-light px-2 pt-2 border"><?= $this->Text->autoParagraph(h($plant->notes)); ?></div>
+
+
+    </div>
+
+
+</div>
+
