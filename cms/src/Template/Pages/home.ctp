@@ -65,45 +65,72 @@ if ($username == null) {
 
     <script src="https://kit.fontawesome.com/ae9903d00e.js"></script>
 </head>
-<body class="home">
+
+<body class="background">
+
+
+
+
+
 <div class="sticky-top border-bottom">
     <nav class="navbar navbar-light bg-white" role="navigation">
+        <div class="row">
+            <div class="col">
+                <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-5 succlogo', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
+            </div>
+            
+            <div class="dropdown col ">
+                <button class="btn btn-success dropdown-toggle dropdown-menu-right fas fa-bars fa-2x mr-3 float-right mt-2" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </button>
+                <div class="dropdown-menu dropdown-menu-right mr-4 text-sci-name" aria-labelledby="dropdownMenu2">
+                    <div><?= $this->Html->link(__($username), ['controller' => 'Users', 'action'=> 'view'], ['class' => 'dropdown-item font-weight-bold']) ?></div>
+                    <div><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'dropdown-item']) ?></div>
+                    <a class="dropdown-item" href="https://book.cakephp.org/3.0/" target="_blank">Help </a>
+                    <div class="dropdown-item">
+                        <?= $this->Html->link(__(''), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'text-decoration-none text-dark fas fa-sign-out-alt']) ?>
 
-        <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-4', 'alt' => 'succulent logo', 'width' => '150', 'height' => '150', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
+                        <?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'text-decoration-none text-dark']) ?></div>
 
-
-        <h1 class="header text-warning"><a><?= $this->fetch('title') ?></a></h1>
-
-
-        <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle dropdown-menu-right " type="button" id="dropdownMenu2"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Menu
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                <a><?= $this->Html->link(__($username), ['controller' => 'Users', 'action' => 'view'], ['class' => 'dropdown-item font-weight-bold']) ?></a>
-                <a><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'dropdown-item']) ?></a>
-                <a class="dropdown-item" href="https://book.cakephp.org/3.0/">Help </a>
-                <a><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'dropdown-item']) ?></a>
+                </div>
             </div>
         </div>
 
     </nav>
 </div>
 
-<div class="container">
-    <div class="col"></div>
-    <div class="vertical-center col">
-        <h1 class="text-center">Welcome to Succulent!</h1>
-        <div class="text-center">
-            <?= $this->Html->link(__('Create Account'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-success']) ?>
+
+
+
+
+
+
+
+
+<div class="container-prof">
+
+
+
+        <h1 class="text-center text-com-color mt-5">Welcome to Succulent!</h1>
+
+        <div class="row mt-5">
+
+            <div class="col"></div>
+
+            <div class="text-center col">
+                <?= $this->Html->link(__('Create Account'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-success mx-3']) ?>
+
+                <?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-success mx-3']) ?>
+            </div>
+
+            <div class="col">
+
+            </div>
+
+
         </div>
-        <div class="col"></div>
-    </div>
-    <div class="col"></div>
-</div>
-<div class="container">
-    <?= $this->fetch('content') ?>
+
+
+
 </div>
 
 </body>

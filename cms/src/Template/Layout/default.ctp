@@ -67,7 +67,6 @@ if($username == null){
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </button>
             <div class="dropdown-menu dropdown-menu-right mr-4 text-sci-name" aria-labelledby="dropdownMenu2">
                 <div><?= $this->Html->link(__($username), ['controller' => 'Users', 'action'=> 'view'], ['class' => 'dropdown-item font-weight-bold']) ?></div>
-                <div><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'dropdown-item']) ?></div>
                 <div><?= $this->Html->link(__('My plants'), ['controller' => 'Plants', 'action'=> 'index'], ['class' => 'dropdown-item']) ?></div>
 <!--                <a class="dropdown-item" href="">Schedule </a>-->
 <!--                <a class="dropdown-item" href="">Settings </a>-->
