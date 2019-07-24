@@ -95,7 +95,7 @@ class WatersController extends AppController
             if ($this->Waters->save($water)) {
                 $this->Flash->success(__('The water has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=> 'plants', 'action' => 'view', $plant_id]);
             }
             $this->Flash->error(__('The water could not be saved. Please, try again.'));
         }
