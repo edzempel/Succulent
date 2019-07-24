@@ -102,7 +102,7 @@ class WatersController extends AppController
             if ($this->Waters->save($water)) {
                 $this->Flash->success(__('The water has been saved.'));
 
-                return $this->redirect(['controller'=> 'plants', 'action' => 'view', $plant_id]);
+                return $this->redirect(['controller' => 'plants', 'action' => 'view', $plant_id]);
             }
             $this->Flash->error(__('The water could not be saved. Please, try again.'));
         }
@@ -119,9 +119,18 @@ class WatersController extends AppController
      */
     public function edit($id = null)
     {
+
         $water = $this->Waters->get($id, [
             'contain' => []
         ]);
+
+        // get common name for this plant
+        $this->loadModel('Plants');
+        $plant = $this->Plants->get($water->plant_id);
+        $common_name = $plant->common_name;
+        $this->request->session()->write('commmon_name', $common_name);
+//        echo $common_name;
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $water = $this->Waters->patchEntity($water, $this->request->getData());
             if ($this->Waters->save($water)) {

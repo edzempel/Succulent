@@ -87,6 +87,15 @@ class PotsController extends AppController
         $pot = $this->Pots->get($id, [
             'contain' => []
         ]);
+
+        // get common name for this plant
+        $this->loadModel('Plants');
+        $plant = $this->Plants->get($pot->plant_id);
+        $common_name = $plant->common_name;
+        $this->request->session()->write('commmon_name', $common_name);
+//        echo $common_name;
+
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pot = $this->Pots->patchEntity($pot, $this->request->getData());
             if ($this->Pots->save($pot)) {
