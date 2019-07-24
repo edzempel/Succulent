@@ -15,7 +15,9 @@ $plant_id = $this->request->session()->read('plant_id');
 
         <div class="mt-4"> <?= $this->Form->control('water_date', ['empty' => true]); ?></div>
     </fieldset>
-    <button class="btn btn-danger float-right mt-3 text-sci-name" type="submit">Add</button>
+
+    <button class="btn btn-info float-right mt-3 text-sci-name" type="submit">Water</button>
+    <div><?= $this->Html->link(__('Cancel'), ['controller' => '', 'action' => ''], ['class' => 'btn btn-danger mr-3 mt-3 text-sci-name float-right']) ?></div>
     <?= $this->Form->end() ?>
 
 </div>
