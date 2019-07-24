@@ -123,7 +123,7 @@ class PlantsController extends AppController
             if ($this->Plants->save($plant)) {
                 $this->Flash->success(__('The plant has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'plants', 'action' => 'view', $plant->id]);
             }
             $this->Flash->error(__('The plant could not be saved. Please, try again.'));
         }
