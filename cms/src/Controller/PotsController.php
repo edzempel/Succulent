@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Pots Controller
@@ -24,6 +25,20 @@ class PotsController extends AppController
             'contain' => ['Plants']
         ];
         $pots = $this->paginate($this->Pots->find('all')->where(['plant_id' => $plant_id])->orderDesc('pot_Date'));
+        $last_potted = $pots->first();
+        $last_potted = new Time($last_potted['pot_date']);
+        $now = Time::now();
+        $difference = $now->diff($last_potted, $absolute = false);
+        $difference = $difference->format('%R%a');
+        $sign = substr($difference, 0, 1);
+        if ($sign == '-') {
+            $difference = substr($difference, 1);
+        }
+        if ($sign == '+') {
+            $difference = '0';
+            $this->Flash->error('The date you last potted the plant is in the future.');
+        }
+        $this->request->session()->write('days_since_potted', $difference);
 
         $this->set(compact('pots'));
     }

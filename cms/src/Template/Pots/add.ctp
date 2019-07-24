@@ -4,6 +4,8 @@
  * @var \App\Model\Entity\Pot $pot
  */
 $common_name = $this->request->session()->read('commmon_name');
+$plant_id = $this->request->session()->read('plant_id');
+
 ?>
 
 <div class="container-profpic">
