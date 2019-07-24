@@ -21,6 +21,13 @@ class WatersController extends AppController
      */
     public function index($plant_id = null)
     {
+        // get common name for this plant
+        $this->loadModel('Plants');
+        $plant = $this->Plants->get($plant_id);
+        $common_name = $plant->common_name;
+        $this->request->session()->write('commmon_name', $common_name);
+        $this->request->session()->write('plant_id', $plant->id);
+
         $this->paginate = [
             'contain' => ['Plants']
         ];
