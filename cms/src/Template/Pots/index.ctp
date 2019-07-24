@@ -5,6 +5,7 @@
  */
 $common_name = $this->request->session()->read('commmon_name');
 $plant_id = $this->request->session()->read('plant_id');
+$days_since_potted = $this->request->session()->read('days_since_potted');
 ?>
 
 
@@ -22,7 +23,7 @@ $plant_id = $this->request->session()->read('plant_id');
         <div class="card col-lg-4 col-md-4 mx-5 my-3 mx-auto">
             <div class="card-body text-center">
                 <h2 class="card-title">
-                    255
+                    <?= $days_since_potted?>
                 </h2>
                 <p class="card-text">Days since last potting</p>
             </div>
