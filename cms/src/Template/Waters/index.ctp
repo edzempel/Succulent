@@ -16,12 +16,11 @@ $plant_id = $this->request->session()->read('plant_id');
 
     </div>
 
-    <!--    <div class="font-weight-bold mt-4 text-dark text-com-name text-com-color"> h($plant->common_name) ?></div>-->
+        <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?></div>
 
     <div class="row ">
-        <h2><?= $common_name; ?></h2>
 
-        <div class="card col-lg-4 col-md-4 mx-5 my-3 mx-auto">
+        <div class="card col-lg-4 col-md-4 my-3 mx-auto">
             <div class="card-body text-center">
                 <h2 class="card-title">
                     <?= $days_since_last_watered ?>
@@ -31,7 +30,7 @@ $plant_id = $this->request->session()->read('plant_id');
         </div>
 
 
-        <div class="card float-right col-lg-4 col-md-4 mx-5 my-3 mx-auto">
+        <div class="card float-right col-lg-4 col-md-4  my-3 mx-auto">
             <div class="card-body text-center">
                 <h2 class="card-title">
                     <?= $average_days_between_waters ?>
