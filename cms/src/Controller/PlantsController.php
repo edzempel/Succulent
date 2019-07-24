@@ -51,7 +51,7 @@ class PlantsController extends AppController
         $water = $this->Waters->find();
         $water->where(['plant_id' => $id]);
         $water->order(['water_date' => 'DESC']);
-        $water = $water->last();
+        $water = $water->first();
         $water = json_decode($water);
         if (is_object($water)) {
             $lastWatered = $water->water_date;
@@ -66,7 +66,7 @@ class PlantsController extends AppController
         $pot = $this->Pots->find();
         $pot->where(['plant_id' => $id]);
         $pot->order(['pot_date' => 'DESC']);
-        $pot = $pot->last();
+        $pot = $pot->first();
         $pot = json_decode($pot);
         if (is_object($pot)) {
             $lastPotted = $pot->pot_date;
