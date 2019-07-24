@@ -86,6 +86,13 @@ class WatersController extends AppController
      */
     public function add($plant_id)
     {
+        // get common name for this plant
+        $this->loadModel('Plants');
+        $plant = $this->Plants->get($plant_id);
+        $common_name = $plant->common_name;
+        $this->request->session()->write('commmon_name', $common_name);
+//        echo $common_name;
+
         $water = $this->Waters->newEntity();
         if ($this->request->is('post')) {
             $water = $this->Waters->patchEntity($water, $this->request->getData());

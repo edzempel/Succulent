@@ -49,11 +49,21 @@ class PotsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($plant_id)
     {
+        // get common name for this plant
+        $this->loadModel('Plants');
+        $plant = $this->Plants->get($plant_id);
+        $common_name = $plant->common_name;
+        $this->request->session()->write('commmon_name', $common_name);
+//        echo $common_name;
+
         $pot = $this->Pots->newEntity();
         if ($this->request->is('post')) {
             $pot = $this->Pots->patchEntity($pot, $this->request->getData());
+            // set the user_id from the session
+            $pot->plant_id = $plant_id;
+
             if ($this->Pots->save($pot)) {
                 $this->Flash->success(__('The pot has been saved.'));
 
