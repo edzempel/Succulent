@@ -10,7 +10,6 @@
     <fieldset>
         <legend class="text-info text-center mt-5"><?= __('Add Water') ?></legend>
 
-            <div> <?= $this->Form->control('plant_id', ['options' => $plants]); ?></div>
             <div class="mt-4"> <?= $this->Form->control('water_date', ['empty' => true]); ?></div>
     </fieldset>
     <button class="btn btn-danger float-right mt-3 text-sci-name" type="submit">Add</button>

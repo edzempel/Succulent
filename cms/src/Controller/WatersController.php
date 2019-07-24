@@ -50,14 +50,14 @@ class WatersController extends AppController
         $oldest = new Time($oldest['water_date']);
 //        echo $oldest.'<br />';
         $count = $waters->count();
-        $count -=1;
-        if($count == 0){
+        $count -= 1;
+        if ($count == 0) {
             $count = 1;
         }
         $days_between_first_and_last_watering = $newest->diff($oldest)->days;
 //        echo $days_between_first_and_last_watering;
         $average_days_between_waters = $days_between_first_and_last_watering / $count;
-        $average_days_between_waters = number_format($average_days_between_waters,0);
+        $average_days_between_waters = number_format($average_days_between_waters, 0);
         $this->request->session()->write('average_days_between_waters', $average_days_between_waters);
 
         $this->set(compact('waters'));
@@ -84,11 +84,14 @@ class WatersController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($plant_id)
     {
         $water = $this->Waters->newEntity();
         if ($this->request->is('post')) {
             $water = $this->Waters->patchEntity($water, $this->request->getData());
+            // set the user_id from the session
+            $water->plant_id = $plant_id;
+
             if ($this->Waters->save($water)) {
                 $this->Flash->success(__('The water has been saved.'));
 
@@ -212,7 +215,8 @@ class WatersController extends AppController
 
     }
 
-    public function lastWatered($plant_id){
+    public function lastWatered($plant_id)
+    {
         $lastWatered = '';
 
         $water = $this->Waters->find();
