@@ -51,7 +51,7 @@ class PlantsController extends AppController
         $water = $this->Waters->find();
         $water->where(['plant_id' => $id]);
         $water->order(['water_date' => 'DESC']);
-        $water = $water->last();
+        $water = $water->first();
         $water = json_decode($water);
         if (is_object($water)) {
             $lastWatered = $water->water_date;
@@ -59,15 +59,14 @@ class PlantsController extends AppController
             $lastWatered = $lastWatered->format('D, j M Y');
 
         } else {
-            $lastWatered = 'Date unknown';
-            $this->Flash->error('The watered plant with id: ' . htmlspecialchars($id) . ' is invalid');
+            $lastWatered = 'not watered yet';
         }
 
         $this->loadModel('Pots');
         $pot = $this->Pots->find();
         $pot->where(['plant_id' => $id]);
         $pot->order(['pot_date' => 'DESC']);
-        $pot = $pot->last();
+        $pot = $pot->first();
         $pot = json_decode($pot);
         if (is_object($pot)) {
             $lastPotted = $pot->pot_date;
@@ -75,8 +74,7 @@ class PlantsController extends AppController
             $lastPotted = $lastPotted->format('D, j M Y');
 
         } else {
-            $lastPotted = 'Date unknown';
-            $this->Flash->error('The potted plant with id: ' . htmlspecialchars($id) . ' is invalid');
+            $lastPotted = 'not potted yet';
         }
 
         $this->request->session()->write('last_watered', $lastWatered);

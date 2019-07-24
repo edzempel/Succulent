@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * Pots Controller
@@ -24,6 +25,20 @@ class PotsController extends AppController
             'contain' => ['Plants']
         ];
         $pots = $this->paginate($this->Pots->find('all')->where(['plant_id' => $plant_id])->orderDesc('pot_Date'));
+        $last_potted = $pots->first();
+        $last_potted = new Time($last_potted['pot_date']);
+        $now = Time::now();
+        $difference = $now->diff($last_potted, $absolute = false);
+        $difference = $difference->format('%R%a');
+        $sign = substr($difference, 0, 1);
+        if ($sign == '-') {
+            $difference = substr($difference, 1);
+        }
+        if ($sign == '+') {
+            $difference = '0';
+            $this->Flash->error('The date you last potted the plant is in the future.');
+        }
+        $this->request->session()->write('days_since_potted', $difference);
 
         $this->set(compact('pots'));
     }
@@ -49,15 +64,25 @@ class PotsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($plant_id)
     {
+        // get common name for this plant
+        $this->loadModel('Plants');
+        $plant = $this->Plants->get($plant_id);
+        $common_name = $plant->common_name;
+        $this->request->session()->write('commmon_name', $common_name);
+//        echo $common_name;
+
         $pot = $this->Pots->newEntity();
         if ($this->request->is('post')) {
             $pot = $this->Pots->patchEntity($pot, $this->request->getData());
+            // set the user_id from the session
+            $pot->plant_id = $plant_id;
+
             if ($this->Pots->save($pot)) {
                 $this->Flash->success(__('The pot has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=> 'plants', 'action' => 'view', $plant_id]);
             }
             $this->Flash->error(__('The pot could not be saved. Please, try again.'));
         }
@@ -77,12 +102,21 @@ class PotsController extends AppController
         $pot = $this->Pots->get($id, [
             'contain' => []
         ]);
+
+        // get common name for this plant
+        $this->loadModel('Plants');
+        $plant = $this->Plants->get($pot->plant_id);
+        $common_name = $plant->common_name;
+        $this->request->session()->write('commmon_name', $common_name);
+//        echo $common_name;
+
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pot = $this->Pots->patchEntity($pot, $this->request->getData());
             if ($this->Pots->save($pot)) {
                 $this->Flash->success(__('The pot has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'index', $pot->plant_id]);
             }
             $this->Flash->error(__('The pot could not be saved. Please, try again.'));
         }

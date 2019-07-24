@@ -3,30 +3,22 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Water $water
  */
+$common_name = $this->request->session()->read('commmon_name');
+$plant_id = $this->request->session()->read('plant_id');
+
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $water->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $water->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Waters'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Plants'), ['controller' => 'Plants', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Plant'), ['controller' => 'Plants', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="waters form large-9 medium-8 columns content">
-    <?= $this->Form->create($water) ?>
-    <fieldset>
-        <legend><?= __('Edit Water') ?></legend>
-        <?php
-            echo $this->Form->control('plant_id', ['options' => $plants]);
-            echo $this->Form->control('water_date', ['empty' => true]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+<div class="container-profpic">
+    <div class="">
+        <?= $this->Form->create($water) ?>
+        <fieldset>
+            <legend class="mb-4 mt-5 text-center text-info "><?= __('Edit Water for ' . $common_name) ?></legend>
+
+            <!--            echo $this->Form->control('plant_id', ['options' => $plants]);-->
+            <?= $this->Form->control('water_date', ['empty' => true]); ?>
+        </fieldset>
+        <button class="btn btn-info float-right mt-3 text-sci-name" type="submit">Save</button>
+        <div><?= $this->Html->link(__('Cancel'), ['controller' => 'waters', 'action' => 'index', $plant_id], ['class' => 'btn btn-danger mr-3 mt-3 text-sci-name float-right']) ?></div>
+        <?= $this->Form->end() ?>
+    </div>
 </div>
