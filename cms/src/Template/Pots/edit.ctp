@@ -16,6 +16,6 @@ $plant_id = $this->request->session()->read('plant_id');
         ?>
     </fieldset>
     <button class="btn btn-info float-right mt-3 text-sci-name" type="submit">Save</button>
-    <div><?= $this->Html->link(__('Cancel'), ['controller' => 'plants', 'action' => 'view', $plant_id], ['class' => 'btn btn-danger mr-3 mt-3 text-sci-name float-right']) ?></div>
+    <div><?= $this->Html->link(__('Cancel'), ['controller' => 'pots', 'action' => 'index', $plant_id], ['class' => 'btn btn-danger mr-3 mt-3 text-sci-name float-right']) ?></div>
     <?= $this->Form->end() ?>
 </div>
