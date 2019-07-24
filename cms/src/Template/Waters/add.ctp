@@ -8,7 +8,7 @@
 
     <?= $this->Form->create($water) ?>
     <fieldset>
-        <legend class="text-info text-center mt-5"><?= __('Add Water') ?></legend>
+        <legend class="text-info text-center mt-5"><?= __('Add Water for') ?></legend>
 
             <div class="mt-4"> <?= $this->Form->control('water_date', ['empty' => true]); ?></div>
     </fieldset>
