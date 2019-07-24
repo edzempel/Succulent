@@ -91,7 +91,8 @@ class WatersController extends AppController
         $plant = $this->Plants->get($plant_id);
         $common_name = $plant->common_name;
         $this->request->session()->write('commmon_name', $common_name);
-//        echo $common_name;
+
+        $this->request->session()->write('plant_id', $plant->id);
 
         $water = $this->Waters->newEntity();
         if ($this->request->is('post')) {
@@ -130,6 +131,8 @@ class WatersController extends AppController
         $common_name = $plant->common_name;
         $this->request->session()->write('commmon_name', $common_name);
 //        echo $common_name;
+
+        $this->request->session()->write('plant_id', $plant->id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $water = $this->Waters->patchEntity($water, $this->request->getData());
