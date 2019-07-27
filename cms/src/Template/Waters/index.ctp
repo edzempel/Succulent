@@ -16,7 +16,8 @@ $plant_id = $this->request->session()->read('plant_id');
 
     </div>
 
-        <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?></div>
+        <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?> </div>
+
 
     <div class="row ">
 

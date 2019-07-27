@@ -47,7 +47,7 @@
                     <div class="card-body ml-2">
                        <h3> <?= $this->Html->link(__(($plant->common_name)), ['action' => 'view', $plant->id], array('class' => 'stretched-link text-success text-decoration-none')) ?></h3>
 
-                        <h5> <?= $this->Html->link(__(($plant->scientific_name)), ['action' => 'view', $plant->id], array('class' => 'text-secondary text-left')) ?></h5>
+                        <h5> <?= $this->Html->link(__(($plant->scientific_name)), ['action' => 'view', $plant->id], array('class' => 'text-secondary text-left ')) ?></h5>
 
                     </div>
                 </div>
