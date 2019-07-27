@@ -1,4 +1,9 @@
 
+
+
+
+
+
 .succlogo{
 
     width:150px;
@@ -135,4 +140,39 @@ text-btn-name {
 /*Added to remove the arrow on Dropdown buttons*/
 .dropdown-toggle::after {
     display:none;
+}
+
+
+
+.container-profpic {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    /*margin-top: 50px;*/
+}
+
+@media (min-width: 576px) {
+    .container-profpic {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-profpic {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-profpic {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-profpic {
+        max-width: 1100px;
+    }
 }

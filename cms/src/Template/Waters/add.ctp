@@ -7,13 +7,14 @@ $common_name = $this->request->session()->read('commmon_name');
 $plant_id = $this->request->session()->read('plant_id');
 
 ?>
-<div class="container-profpic">
+<div class="container-profpic mt-4">
 
     <?= $this->Form->create($water) ?>
     <fieldset>
-        <legend class="text-info text-center mt-5"><?= __('Add Water for ' . $common_name) ?></legend>
+        <legend class="text-info text-center "><?= __('Add Water for ' . $common_name) ?></legend>
 
-        <div class="mt-4"> <?= $this->Form->control('water_date', ['empty' => true]); ?></div>
+        <div class="mt-4"> <?= $this->Form->control('water_date', ['empty' => true,
+                'label' =>'Water Date (Y/m/d/h/m)', 'default'=> date('Y-m-d-h-m')]) ?></div>
     </fieldset>
 
     <button class="btn btn-info float-right mt-3 text-sci-name" type="submit">Water</button>
