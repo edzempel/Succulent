@@ -47,7 +47,7 @@ $days_since_potted = $this->request->session()->read('days_since_potted');
                 <td><?= h($pot->pot_date) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pot->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pot->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pot->id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pot->id], ['confirm' => __('Are you sure you want to delete {0} from potting history?', $pot->pot_date)]) ?>
                 </td>
             </tr>
         <?php endforeach; ?>

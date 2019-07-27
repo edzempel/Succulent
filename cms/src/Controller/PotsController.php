@@ -82,7 +82,7 @@ class PotsController extends AppController
             if ($this->Pots->save($pot)) {
                 $this->Flash->success(__('The pot has been saved.'));
 
-                return $this->redirect(['controller'=> 'plants', 'action' => 'view', $plant_id]);
+                return $this->redirect(['controller' => 'plants', 'action' => 'view', $plant_id]);
             }
             $this->Flash->error(__('The pot could not be saved. Please, try again.'));
         }
@@ -135,13 +135,16 @@ class PotsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $pot = $this->Pots->get($id);
+        $success_date = $pot->pot_date;
+
         if ($this->Pots->delete($pot)) {
-            $this->Flash->success(__('The pot has been deleted.'));
+            $this->Flash->success(__('The date: ' . $success_date . ', has been deleted from potting history.'));
         } else {
             $this->Flash->error(__('The pot could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        $plant_id = $this->request->session()->read('plant_id');
+        return $this->redirect(['controller' => 'pots', 'action' => 'index', $plant_id]);
     }
 
     public function isAuthorized($user)

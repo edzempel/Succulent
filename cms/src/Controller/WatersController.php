@@ -166,13 +166,16 @@ class WatersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $water = $this->Waters->get($id);
+
+        $success_date = $water->water_date;
         if ($this->Waters->delete($water)) {
-            $this->Flash->success(__('The water has been deleted.'));
+            $this->Flash->success(__('The date: '.$success_date.', has been deleted form watering history.'));
         } else {
             $this->Flash->error(__('The water could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        $plant_id = $this->request->session()->read('plant_id');
+        return $this->redirect(['controller'=> 'waters', 'action' => 'index', $plant_id]);
     }
 
     public function isAuthorized($user)
