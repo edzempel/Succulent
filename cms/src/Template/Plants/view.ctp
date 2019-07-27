@@ -30,7 +30,7 @@
     <div class="row mt-3 mb-4">
         <div class="col-12">
 
-            <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none mr-2']) ?>
+            <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none ']) ?>
 
             <?= $this->Html->link(__(' +'), ['controller' => 'Waters', 'action' => 'add', $plant->id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
 
