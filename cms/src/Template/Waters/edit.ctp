@@ -8,14 +8,15 @@ $plant_id = $this->request->session()->read('plant_id');
 
 ?>
 
-<div class="container-profpic">
+<div class="container-profpic mt-4">
     <div class="">
         <?= $this->Form->create($water) ?>
         <fieldset>
-            <legend class="mb-4 mt-5 text-center text-info "><?= __('Edit Water for ' . $common_name) ?></legend>
-
-            <!--            echo $this->Form->control('plant_id', ['options' => $plants]);-->
-            <?= $this->Form->control('water_date', ['empty' => true]); ?>
+            <legend class="text-center text-info "><?= __('Edit Water for ' . $common_name) ?></legend>
+            <div class="text-sci-name text-secondary mt-4 text-center">Water Date (Y/M/D/H/M): </div>
+            <div class="mt-3 text-center ml-3">
+            <?= $this->Form->control('water_date', ['empty' => true, 'label'=>'' ]); ?>
+            </div>
         </fieldset>
         <button class="btn btn-info float-right mt-3 text-sci-name" type="submit">Save</button>
         <div><?= $this->Html->link(__('Cancel'), ['controller' => 'waters', 'action' => 'index', $plant_id], ['class' => 'btn btn-danger mr-3 mt-3 text-sci-name float-right']) ?></div>
