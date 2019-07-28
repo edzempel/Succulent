@@ -18,6 +18,8 @@ $plant_id = $this->request->session()->read('plant_id');
 
         <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?> </div>
 
+    <div><?= $this->Html->link(__(' +'), ['controller' => 'Waters', 'action' => 'add', $plant_id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?></div>
+
 
     <div class="row ">
 
