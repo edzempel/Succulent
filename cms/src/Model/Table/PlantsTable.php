@@ -48,13 +48,19 @@ class PlantsTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Photos', [
-            'foreignKey' => 'plant_id'
+            'foreignKey' => 'plant_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('Pots', [
-            'foreignKey' => 'plant_id'
+            'foreignKey' => 'plant_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('Waters', [
-            'foreignKey' => 'plant_id'
+            'foreignKey' => 'plant_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 
