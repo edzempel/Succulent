@@ -49,14 +49,16 @@ class PhotosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($plant_id)
     {
         $photo = $this->Photos->newEntity();
         if ($this->request->is('post')) {
             $photo = $this->Photos->patchEntity($photo, $this->request->getData());
+            $photo->plant_id = $plant_id;
+
             if ($this->Photos->save($photo)) {
                 $this->UpdatePhotoName->updatePhotoName($photo);
-                $this->Flash->success(__('The photo has been saved.'));
+                $this->Flash->success(__($photo->photo . ' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
