@@ -15,7 +15,7 @@ class PhotosController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|void
+     * @return \Cake\Http\Response|null
      */
     public function index()
     {
@@ -31,7 +31,7 @@ class PhotosController extends AppController
      * View method
      *
      * @param string|null $id Photo id.
-     * @return \Cake\Http\Response|void
+     * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
