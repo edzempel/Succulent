@@ -46,6 +46,8 @@ class PlantsController extends AppController
         $plant = $this->Plants->get($id, [
             'contain' => ['Users', 'Photos', 'Pots', 'Waters']
         ]);
+        $this->request->session()->write('commmon_name', $plant->common_name);
+        $this->request->session()->write('plant_id', $plant->id);
 
         $this->loadModel('Waters');
         $water = $this->Waters->find();

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -38,6 +39,28 @@ class PhotosTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Josegonzalez/Upload.Upload', [
+                // You can configure as many upload fields as possible,
+                // where the pattern is `field` => `config`
+                //
+                // Keep in mind that while this plugin does not have any limits in terms of
+                // number of files uploaded per request, you should keep this down in order
+                // to decrease the ability of your users to block other requests.
+                'photo' => [
+                    'path' => 'webroot{DS}img{DS}{model}{DS}{field-value:plant_id}{DS}',
+                    'nameCallback' => function ($table, $entity, $data, $field, $settings) {
+                        // https://github.com/FriendsOfCake/cakephp-upload/blob/master/docs/configuration.rst
+                        $name = $data['name'];
+                        // replace white space and underscores with hyphens
+                        $name = preg_replace('/[_\s]/', '-', $name);
+                        return strtolower($name);
+                    },
+                    'keepFilesOnDelete' => false
+
+                ]
+            ]
+        );
+
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Plants', [
@@ -59,10 +82,24 @@ class PhotosTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
-            ->scalar('url')
-            ->maxLength('url', 255)
-            ->requirePresence('url', 'create')
-            ->allowEmptyString('url', false);
+//            ->scalar('photo')
+//            ->maxLength('photo', 255)
+            ->allowEmptyString('photo');
+
+        $validator
+            ->scalar('dir')
+            ->maxLength('dir', 255)
+            ->allowEmptyString('dir');
+
+        $validator
+            ->scalar('size')
+            ->maxLength('size', 255)
+            ->allowEmptyString('size');
+
+        $validator
+            ->scalar('type')
+            ->maxLength('type', 255)
+            ->allowEmptyString('type');
 
         $validator
             ->boolean('is_profile')

@@ -10,7 +10,7 @@
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $photo->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $photo->id)]
+                ['confirm' => __('Are you sure you want to delete # {0}?', $photo->photo)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Photos'), ['action' => 'index']) ?></li>
@@ -19,12 +19,15 @@
     </ul>
 </nav>
 <div class="photos form large-9 medium-8 columns content">
-    <?= $this->Form->create($photo) ?>
+    <?= $this->Form->create($photo,  ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Edit Photo') ?></legend>
         <?php
             echo $this->Form->control('plant_id', ['options' => $plants]);
-            echo $this->Form->control('url');
+            echo $this->Form->control('photo', ['type' => 'file']);
+//            echo $this->Form->control('dir');
+//            echo $this->Form->control('size');
+//            echo $this->Form->control('type');
             echo $this->Form->control('is_profile');
         ?>
     </fieldset>

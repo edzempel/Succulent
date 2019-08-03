@@ -41,6 +41,9 @@
 
 
         </div>
+        <div>
+            <?= $this->Html->link(__(' photo +'), ['controller'=>'Photos', 'action' => 'add', $plant->id], ['class' => 'btn fas fa-tint ml-4 fa-2x']) ?>
+        </div>
     </div>
 
 
