@@ -55,6 +55,7 @@ class PhotosController extends AppController
         if ($this->request->is('post')) {
             $photo = $this->Photos->patchEntity($photo, $this->request->getData());
             if ($this->Photos->save($photo)) {
+                $this->UpdatePhotoName->updatePhotoName($photo);
                 $this->Flash->success(__('The photo has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -139,6 +140,8 @@ class PhotosController extends AppController
         parent::initialize();
         // list what is allowed for unauthenticated users
         $this->Auth->allow(['']);
+
+        $this->loadComponent('UpdatePhotoName');
     }
 
 }
