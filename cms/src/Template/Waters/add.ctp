@@ -12,8 +12,8 @@ $plant_id = $this->request->session()->read('plant_id');
     <?= $this->Form->create($water) ?>
     <fieldset>
         <legend class="text-info text-center "><?= __('Add Water for ' . $common_name) ?></legend>
-        <div class="text-sci-name text-secondary mt-4 text-center">Water Date (Y/M/D/H/M): </div>
-        <div class="mt-3 text-center ml-3"> <?= $this->Form->control('water_date', ['empty' => true, 'label' =>'', 'default'=> date('Y-F-d-G-i')]) ?></div>
+        <div class="text-sci-name text-secondary mt-4 text-center">Water Date (Y/M/D/H/M):</div>
+        <div class="mt-3 text-center ml-3"> <?= $this->Form->control('water_date', ['empty' => true, 'label' => '', 'dateFormat' => 'dd-MM-yyyy', 'minYear' => '2017', 'type' => 'date']) ?></div>
     </fieldset>
 
     <button class="btn btn-info float-right mt-4 text-sci-name" type="submit">Water</button>

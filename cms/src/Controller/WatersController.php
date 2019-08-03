@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\I18n\Time;
+use Cake\Log\Log;
 
 /**
  * Waters Controller
@@ -103,9 +104,16 @@ class WatersController extends AppController
 
         $water = $this->Waters->newEntity();
         if ($this->request->is('post')) {
-            $water = $this->Waters->patchEntity($water, $this->request->getData());
+            $data = $this->request->getData();
+            $data['water_date']['hour'] = 00;
+            $data['water_date']['minute'] = 00;
+            Log::write('debug',$data);
+
+            $water = $this->Waters->patchEntity($water, $data);
             // set the user_id from the session
             $water->plant_id = $plant_id;
+//            $water->water_date->hour = 0;
+//            $water->water_date->minute = 0;
 
             if ($this->Waters->save($water)) {
                 $this->Flash->success(__('The water has been saved.'));

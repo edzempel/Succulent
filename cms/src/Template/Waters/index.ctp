@@ -58,7 +58,7 @@ $plant_id = $this->request->session()->read('plant_id');
                 <tr>
 
 
-                    <td><?= h($water->water_date) ?></td>
+                    <td><?= $water->water_date->format('m-d-Y') ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $water->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $water->id], ['confirm' => __('Are you sure you want to delete {0} from watering history?', $water->water_date)]) ?>
