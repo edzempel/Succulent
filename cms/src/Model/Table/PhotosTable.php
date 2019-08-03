@@ -59,10 +59,24 @@ class PhotosTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
-            ->scalar('url')
-            ->maxLength('url', 255)
-            ->requirePresence('url', 'create')
-            ->allowEmptyString('url', false);
+            ->scalar('photo')
+            ->maxLength('photo', 255)
+            ->allowEmptyString('photo');
+
+        $validator
+            ->scalar('dir')
+            ->maxLength('dir', 255)
+            ->allowEmptyString('dir');
+
+        $validator
+            ->scalar('size')
+            ->maxLength('size', 255)
+            ->allowEmptyString('size');
+
+        $validator
+            ->scalar('type')
+            ->maxLength('type', 255)
+            ->allowEmptyString('type');
 
         $validator
             ->boolean('is_profile')
