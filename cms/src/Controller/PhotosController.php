@@ -103,9 +103,10 @@ class PhotosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $photo = $this->Photos->get($id);
         if ($this->Photos->delete($photo)) {
-            $this->Flash->success(__('The photo has been deleted.'));
+            $this->DeletePhoto->deletePhoto($photo);
+            $this->Flash->success(__($photo->photo . ' has been deleted'));
         } else {
-            $this->Flash->error(__('The photo could not be deleted. Please, try again.'));
+            $this->Flash->error(__($photo->photo . ' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -142,6 +143,7 @@ class PhotosController extends AppController
         $this->Auth->allow(['']);
 
         $this->loadComponent('UpdatePhotoName');
+        $this->loadComponent('DeletePhoto');
     }
 
 }
