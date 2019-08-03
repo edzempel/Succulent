@@ -7,7 +7,7 @@
 # CakePHP 3
 
 /vendor/*
-/webroot/img/Photos/*
+cms/webroot/img/Photos
 
 #This file contains authentication information
 /config/app.php
