@@ -19,7 +19,10 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('plant_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('url') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('photo') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('dir') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('size') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('type') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('is_profile') ?></th>
@@ -31,7 +34,10 @@
             <tr>
                 <td><?= $this->Number->format($photo->id) ?></td>
                 <td><?= $photo->has('plant') ? $this->Html->link($photo->plant->id, ['controller' => 'Plants', 'action' => 'view', $photo->plant->id]) : '' ?></td>
-                <td><?= h($photo->url) ?></td>
+                <td><?= h($photo->photo) ?></td>
+                <td><?= h($photo->dir) ?></td>
+                <td><?= h($photo->size) ?></td>
+                <td><?= h($photo->type) ?></td>
                 <td><?= h($photo->created) ?></td>
                 <td><?= h($photo->modified) ?></td>
                 <td><?= h($photo->is_profile) ?></td>
