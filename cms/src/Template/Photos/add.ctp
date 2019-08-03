@@ -13,16 +13,16 @@
     </ul>
 </nav>
 <div class="photos form large-9 medium-8 columns content">
-    <?= $this->Form->create($photo) ?>
+    <?= $this->Form->create($photo, ['type' => 'file'])   ?>
     <fieldset>
         <legend><?= __('Add Photo') ?></legend>
         <?php
             echo $this->Form->control('plant_id', ['options' => $plants]);
-            echo $this->Form->control('photo');
-            echo $this->Form->control('dir');
-            echo $this->Form->control('size');
-            echo $this->Form->control('type');
-            echo $this->Form->control('is_profile');
+            echo $this->Form->control('photo', ['type' => 'file']);
+            //            echo $this->Form->control('dir');
+            //            echo $this->Form->control('size');
+            //            echo $this->Form->control('type');
+            echo $this->Form->control('is_profile', ['label' => 'Set as profile photo?']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
