@@ -24,7 +24,10 @@
         <legend><?= __('Edit Photo') ?></legend>
         <?php
             echo $this->Form->control('plant_id', ['options' => $plants]);
-            echo $this->Form->control('url');
+            echo $this->Form->control('photo');
+            echo $this->Form->control('dir');
+            echo $this->Form->control('size');
+            echo $this->Form->control('type');
             echo $this->Form->control('is_profile');
         ?>
     </fieldset>
