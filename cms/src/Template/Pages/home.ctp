@@ -75,24 +75,11 @@ if ($username == null) {
 <div class="sticky-top border-bottom">
     <nav class="navbar navbar-light bg-white" role="navigation">
         <div class="row">
-            <div class="col">
+            <div class="col ml-5">
                 <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-5 succlogo', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
             </div>
             
-            <div class="dropdown col ">
-                <button class="btn btn-success dropdown-toggle dropdown-menu-right fas fa-bars fa-2x mr-3 float-right mt-2" type="button" id="dropdownMenu2"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> </button>
-                <div class="dropdown-menu dropdown-menu-right mr-4 text-sci-name" aria-labelledby="dropdownMenu2">
-                    <div><?= $this->Html->link(__($username), ['controller' => 'Users', 'action'=> 'view'], ['class' => 'dropdown-item font-weight-bold']) ?></div>
-                    <div><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'dropdown-item']) ?></div>
-                    <a class="dropdown-item" href="https://book.cakephp.org/3.0/" target="_blank">Help </a>
-                    <div class="dropdown-item">
-                        <?= $this->Html->link(__(''), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'text-decoration-none text-dark fas fa-sign-out-alt']) ?>
-
-                        <?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout'], ['class' => 'text-decoration-none text-dark']) ?></div>
-
-                </div>
-            </div>
+            <div class="col"></div>
         </div>
 
     </nav>
@@ -100,19 +87,13 @@ if ($username == null) {
 
 
 
-
-
-
-
-
-
 <div class="container-prof">
 
 
 
-        <h1 class="text-center text-com-color mt-5">Welcome to Succulent!</h1>
+        <h1 class="text-center text-com-color mt-4">Welcome to Succulent!</h1>
 
-        <div class="row mt-5">
+        <div class="row mt-4">
 
             <div class="col"></div>
 
@@ -129,6 +110,55 @@ if ($username == null) {
 
         </div>
 
+
+    <div class="container-profpic">
+        <div id="carouselExampleCaptions" class="carousel slide mt-4 mb-3" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/img/smaller snake plant.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-white">First slide label</h5>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/smaller perle von.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/Aloe.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
 
 
 </div>
