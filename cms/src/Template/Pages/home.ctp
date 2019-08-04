@@ -95,23 +95,32 @@ if ($username == null) {
 
         <div class="row mt-4">
 
-            <div class="col"></div>
+            <div class="text-center col ">
 
-            <div class="text-center col">
-                <?= $this->Html->link(__('Create Account'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-success mx-3']) ?>
+                <div class="btn btn-success mx-3 position-relative">
 
-                <?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login'], ['class' => 'btn btn-success mx-3']) ?>
+                    <?= $this->Html->link(__('Create Account '), ['controller' => 'Users', 'action' => 'add'], ['class' => 'text-decoration-none text-white ']) ?>
+                <?= $this->Html->link(__(''), ['controller' => 'Users', 'action' => 'add'], ['class' => 'text-decoration-none text-white fas fa-user-plus stretched-link']) ?>
+                </div>
+
+
+
+                <div class="btn btn-success mx-3 position-relative">
+                    <?= $this->Html->link(__('Login '), ['controller' => 'Users', 'action' => 'login'], ['class' => 'text-decoration-none text-white']) ?>
+                    <?= $this->Html->link(__(''), ['controller' => 'Users', 'action' => 'login'], ['class' => 'text-decoration-none text-white fas fa-sign-in-alt stretched-link']) ?>
+
+                </div>
+
+
             </div>
 
-            <div class="col">
 
-            </div>
 
 
         </div>
 
 
-    <div class="container-profpic">
+    <div class="">
         <div id="carouselExampleCaptions" class="carousel slide mt-4 mb-3" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -121,21 +130,21 @@ if ($username == null) {
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/img/smaller snake plant.jpg" class="d-block w-100" alt="...">
+                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5 class="text-white">First slide label</h5>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/smaller perle von.jpg" class="d-block w-100" alt="...">
+                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/Aloe.jpg" class="d-block w-100" alt="...">
+                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
