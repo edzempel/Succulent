@@ -132,31 +132,31 @@ if ($username == null) {
                 <div class="carousel-item active">
                     <img src="/img/MyLibrary.jpg" class="d-block w-100 border" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5 class="text-white">First slide label</h5>
+                        <h5 class="font-weight-bold ">First slide label</h5>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="/img/PlantView.jpg" class="d-block w-100 border" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
+                        <h5 class="font-weight-bold">Second slide label</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">
+                    <img src="/img/waters_index.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div>
-                </div>
+<!--                <div class="carousel-item">-->
+<!--                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">-->
+<!--                    <div class="carousel-caption d-none d-md-block">-->
+<!--                        <h5>Third slide label</h5>-->
+<!--                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
