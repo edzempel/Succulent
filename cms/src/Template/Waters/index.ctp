@@ -16,10 +16,12 @@ $plant_id = $this->request->session()->read('plant_id');
 
     </div>
 
-        <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?> </div>
+        <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5 mb-3"><?= $common_name; ?> </div>
 
 
-    <div class="row ">
+
+
+    <div class="row">
 
         <div class="card col-lg-4 col-md-4 my-3 mx-auto">
             <div class="card-body text-center">
