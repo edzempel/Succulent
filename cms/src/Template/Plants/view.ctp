@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Plant $plant
  */
+$first_last_plant_photos = $this->request->session()->read('first_last_plant_photos');
 ?>
 <div class="container-prof">
 <div class="mt-3 btn btn-success position-relative">
@@ -61,9 +62,9 @@
 
         <div class="row">
             <div class="col-12">
-                <?= $this->Html->image('young_succ.jpg', ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image($first_last_plant_photos['first'], ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
 
-                <?= $this->Html->image('smaller wax agave.jpg', ['class' => 'float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image($first_last_plant_photos['last'], ['class' => 'mb-4 float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
             </div>
         </div>
     </div>

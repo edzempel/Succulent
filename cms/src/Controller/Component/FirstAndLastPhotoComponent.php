@@ -34,7 +34,22 @@ class FirstAndLastPhotoComponent extends Component
         $first = $query->last();
         $last = $query->first();
 
-        return ['first' => $this->getPath($first) . $this->getName($first), 'last' => $this->getPath($last) . $this->getName($last)];
+        $output = ['first' => null, 'last' => null];
+
+        if ($first != null) {
+            $first_photo = substr($this->getPath($first), 12) . $this->getName($first);
+        } else {
+            $first_photo = $this->babyPhoto();
+        }
+        if ($last != null) {
+            $last_photo = substr($this->getPath($last), 12) . $this->getName($last);
+        } else {
+            $last_photo = $this->adultPhoto();
+        }
+        $output['first'] = $first_photo;
+        $output['last'] = $last_photo;
+
+        return $output;
 
     }
 
@@ -46,5 +61,15 @@ class FirstAndLastPhotoComponent extends Component
     public function getName(Photo $photo)
     {
         return $photo->photo;
+    }
+
+    public function babyPhoto()
+    {
+        return 'default_photos/young_succ.jpg';
+    }
+
+    public function adultPhoto()
+    {
+        return 'default_photos/jade.jpg';
     }
 }

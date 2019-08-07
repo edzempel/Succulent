@@ -80,12 +80,13 @@ class PlantsController extends AppController
             $lastPotted = 'not potted yet';
         }
 
-        $firstAndLast = $this->FirstAndLastPhoto->getFirstAndLastPhoto($id);
-        Log::write('debug', $firstAndLast);
+        $firstAndLastPlantPhotos = $this->FirstAndLastPhoto->getFirstAndLastPhoto($id);
+        Log::write('debug', $firstAndLastPlantPhotos);
 
 
         $this->request->session()->write('last_watered', $lastWatered);
         $this->request->session()->write('last_potted', $lastPotted);
+        $this->request->session()->write('first_last_plant_photos', $firstAndLastPlantPhotos);
         $this->set('plant', $plant);
     }
 
