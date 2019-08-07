@@ -41,7 +41,7 @@ class FirstAndLastPhotoComponent extends Component
         } else {
             $first_photo = $this->babyPhoto();
         }
-        if ($last != null) {
+        if ($last != null && $query->count() >= 2) {
             $last_photo = substr($this->getPath($last), 12) . $this->getName($last);
         } else {
             $last_photo = $this->adultPhoto();

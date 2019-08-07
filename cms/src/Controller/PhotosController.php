@@ -60,7 +60,7 @@ class PhotosController extends AppController
                 $this->UpdatePhotoName->updatePhotoName($photo);
                 $this->Flash->success(__($photo->photo . ' has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Plants', 'action' => 'view', $plant_id]);
             }
             $this->Flash->error(__('The photo could not be saved. Please, try again.'));
         }
