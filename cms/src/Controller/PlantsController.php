@@ -31,7 +31,8 @@ class PlantsController extends AppController
         ];
         $user_id = $this->Auth->user('id');
         $plants = $this->paginate($this->Plants->find()->where(['user_id' => $user_id]), $settings);
-
+        $most_recent_plant_photos = $this->LastPhotoForAll->lastPhotoForall($user_id);
+        $this->request->session()->write('most_recent_plant_photos', $most_recent_plant_photos);
         $this->set(compact('plants'));
     }
 
@@ -188,5 +189,6 @@ class PlantsController extends AppController
         // list what is allowed for unauthenticated users
         $this->Auth->allow(['']);
         $this->loadComponent('FirstAndLastPhoto');
+        $this->loadComponent('LastPhotoForAll');
     }
 }
