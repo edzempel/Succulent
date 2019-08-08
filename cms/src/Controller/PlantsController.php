@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\I18n\Time;
+use Cake\Log\Log;
 
 /**
  * Plants Controller
@@ -30,7 +31,8 @@ class PlantsController extends AppController
         ];
         $user_id = $this->Auth->user('id');
         $plants = $this->paginate($this->Plants->find()->where(['user_id' => $user_id]), $settings);
-
+        $most_recent_plant_photos = $this->LastPhotoForAll->lastPhotoForall($user_id);
+        $this->request->session()->write('most_recent_plant_photos', $most_recent_plant_photos);
         $this->set(compact('plants'));
     }
 
@@ -79,8 +81,13 @@ class PlantsController extends AppController
             $lastPotted = 'not potted yet';
         }
 
+        $firstAndLastPlantPhotos = $this->FirstAndLastPhoto->getFirstAndLastPhoto($id);
+        Log::write('debug', $firstAndLastPlantPhotos);
+
+
         $this->request->session()->write('last_watered', $lastWatered);
         $this->request->session()->write('last_potted', $lastPotted);
+        $this->request->session()->write('first_last_plant_photos', $firstAndLastPlantPhotos);
         $this->set('plant', $plant);
     }
 
@@ -181,5 +188,7 @@ class PlantsController extends AppController
         parent::initialize();
         // list what is allowed for unauthenticated users
         $this->Auth->allow(['']);
+        $this->loadComponent('FirstAndLastPhoto');
+        $this->loadComponent('LastPhotoForAll');
     }
 }
