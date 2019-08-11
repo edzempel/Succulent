@@ -89,7 +89,7 @@ class WatersController extends AppController
 
     /**
      * Add method
-     *
+     * @param  $plant_id
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add($plant_id)
@@ -112,8 +112,6 @@ class WatersController extends AppController
             $water = $this->Waters->patchEntity($water, $data);
             // set the user_id from the session
             $water->plant_id = $plant_id;
-//            $water->water_date->hour = 0;
-//            $water->water_date->minute = 0;
 
             if ($this->Waters->save($water)) {
                 $this->Flash->success(__('The water has been saved.'));
