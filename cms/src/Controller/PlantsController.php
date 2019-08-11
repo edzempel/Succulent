@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\I18n\Time;
 use Cake\Log\Log;
 
 /**
@@ -51,38 +50,10 @@ class PlantsController extends AppController
         $this->request->session()->write('commmon_name', $plant->common_name);
         $this->request->session()->write('plant_id', $plant->id);
 
-        $this->loadModel('Waters');
-        $water = $this->Waters->find();
-        $water->where(['plant_id' => $id]);
-        $water->order(['water_date' => 'DESC']);
-        $water = $water->first();
-        $water = json_decode($water);
-        if (is_object($water)) {
-            $lastWatered = $water->water_date;
-            $lastWatered = new Time($lastWatered);
-            $lastWatered = $lastWatered->format('D, j M Y');
-
-        } else {
-            $lastWatered = 'not watered yet';
-        }
-
-        $this->loadModel('Pots');
-        $pot = $this->Pots->find();
-        $pot->where(['plant_id' => $id]);
-        $pot->order(['pot_date' => 'DESC']);
-        $pot = $pot->first();
-        $pot = json_decode($pot);
-        if (is_object($pot)) {
-            $lastPotted = $pot->pot_date;
-            $lastPotted = new Time($lastPotted);
-            $lastPotted = $lastPotted->format('D, j M Y');
-
-        } else {
-            $lastPotted = 'not potted yet';
-        }
-
+        $lastWatered = $this->GetLastWater->getLastWater($id);
+        $lastPotted = $this->GetLastPot->getLastPot($id);
         $firstAndLastPlantPhotos = $this->FirstAndLastPhoto->getFirstAndLastPhoto($id);
-        Log::write('debug', $firstAndLastPlantPhotos);
+//        Log::write('debug', $firstAndLastPlantPhotos);
 
 
         $this->request->session()->write('last_watered', $lastWatered);
@@ -190,5 +161,7 @@ class PlantsController extends AppController
         $this->Auth->allow(['']);
         $this->loadComponent('FirstAndLastPhoto');
         $this->loadComponent('LastPhotoForAll');
+        $this->loadComponent('GetLastWater');
+        $this->loadComponent('GetLastPot');
     }
 }
