@@ -89,7 +89,7 @@ class WatersController extends AppController
 
     /**
      * Add method
-     *
+     * @param  $plant_id
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add($plant_id)
@@ -107,13 +107,11 @@ class WatersController extends AppController
             $data = $this->request->getData();
             $data['water_date']['hour'] = 00;
             $data['water_date']['minute'] = 00;
-            Log::write('debug',$data);
+            Log::write('debug', $data);
 
             $water = $this->Waters->patchEntity($water, $data);
             // set the user_id from the session
             $water->plant_id = $plant_id;
-//            $water->water_date->hour = 0;
-//            $water->water_date->minute = 0;
 
             if ($this->Waters->save($water)) {
                 $this->Flash->success(__('The water has been saved.'));
@@ -181,13 +179,13 @@ class WatersController extends AppController
 
         $success_date = $water->water_date;
         if ($this->Waters->delete($water)) {
-            $this->Flash->success(__('The date: '.$success_date.', has been deleted form watering history.'));
+            $this->Flash->success(__('The date: ' . $success_date . ', has been deleted form watering history.'));
         } else {
             $this->Flash->error(__('The water could not be deleted. Please, try again.'));
         }
 
         $plant_id = $this->request->session()->read('plant_id');
-        return $this->redirect(['controller'=> 'waters', 'action' => 'index', $plant_id]);
+        return $this->redirect(['controller' => 'waters', 'action' => 'index', $plant_id]);
     }
 
     public function isAuthorized($user)
@@ -220,58 +218,5 @@ class WatersController extends AppController
         // list what is allowed for unauthenticated users
         $this->Auth->allow(['']);
     }
-
-    public function last($plant = 1)
-    {
-        // https://book.cakephp.org/3.0/en/orm/query-builder.html
-        $water = $this->Waters->find();
-        $water->where(['plant_id' => $plant]);
-        $water->order(['water_date' => 'DESC']);
-        $water = $water->last();
-        $water = json_decode($water);
-        $difference = 'N/A';
-        if (is_object($water)) {
-            $water = $water->water_date;
-
-            $water = new Time($water);
-            $now = Time::now();
-            $difference = $now->diff($water, $absolute = false);
-            $difference = $difference->format('%R%a');
-            $sign = substr($difference, 0, 1);
-            if ($sign == '-') {
-                $difference = substr($difference, 1);
-            }
-            if ($sign == '+') {
-                $difference = '0';
-                $this->Flash->error('The date you last watered the plant is in the future.');
-            }
-
-        } else {
-            $this->Flash->error('The plant with id: ' . htmlspecialchars($plant) . ' is invalid');
-        }
-
-//        $this->request->session()->write('water', $water); // for debugging
-        $this->request->session()->write('difference', $difference);
-
-
-    }
-
-    public function lastWatered($plant_id)
-    {
-        $lastWatered = '';
-
-        $water = $this->Waters->find();
-        $water->where(['plant_id' => $plant_id]);
-        $water->order(['water_date' => 'DESC']);
-        $water = $water->last();
-        $water = json_decode($water);
-        if (is_object($water)) {
-            $lastWatered = $water->water_date;
-
-        } else {
-            $this->Flash->error('The plant with id: ' . htmlspecialchars($plant_id) . ' is invalid');
-        }
-
-        return $lastWatered;
-    }
+    
 }
