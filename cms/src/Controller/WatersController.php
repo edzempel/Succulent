@@ -150,7 +150,11 @@ class WatersController extends AppController
         $this->request->session()->write('plant_id', $plant->id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $water = $this->Waters->patchEntity($water, $this->request->getData());
+            $data = $this->request->getData();
+            $data['water_date']['hour'] = 00;
+            $data['water_date']['minute'] = 00;
+            $water = $this->Waters->patchEntity($water, $data);
+
             if ($this->Waters->save($water)) {
 
                 $this->Flash->success(__('The water has been saved.'));
