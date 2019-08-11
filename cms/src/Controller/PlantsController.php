@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\I18n\Time;
 use Cake\Log\Log;
 
 /**
@@ -52,24 +51,9 @@ class PlantsController extends AppController
         $this->request->session()->write('plant_id', $plant->id);
 
         $lastWatered = $this->GetLastWater->getLastWater($id);
-
-        $this->loadModel('Pots');
-        $pot = $this->Pots->find();
-        $pot->where(['plant_id' => $id]);
-        $pot->order(['pot_date' => 'DESC']);
-        $pot = $pot->first();
-        $pot = json_decode($pot);
-        if (is_object($pot)) {
-            $lastPotted = $pot->pot_date;
-            $lastPotted = new Time($lastPotted);
-            $lastPotted = $lastPotted->format('D, j M Y');
-
-        } else {
-            $lastPotted = 'not potted yet';
-        }
-
+        $lastPotted = $this->GetLastPot->getLastPot($id);
         $firstAndLastPlantPhotos = $this->FirstAndLastPhoto->getFirstAndLastPhoto($id);
-        Log::write('debug', $firstAndLastPlantPhotos);
+//        Log::write('debug', $firstAndLastPlantPhotos);
 
 
         $this->request->session()->write('last_watered', $lastWatered);
@@ -178,5 +162,6 @@ class PlantsController extends AppController
         $this->loadComponent('FirstAndLastPhoto');
         $this->loadComponent('LastPhotoForAll');
         $this->loadComponent('GetLastWater');
+        $this->loadComponent('GetLastPot');
     }
 }

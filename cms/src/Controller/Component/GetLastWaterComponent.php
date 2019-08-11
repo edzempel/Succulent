@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
@@ -18,7 +19,13 @@ class GetLastWaterComponent extends Component
      */
     protected $_defaultConfig = [];
 
-    public function getLastWater($id){
+    /**
+     * Returns the most recent time watered for a plant
+     * @param $id plant_id
+     * @return Time|string time object or 'not potted yet' string
+     */
+    public function getLastWater($id)
+    {
         $Waters = TableRegistry::getTableLocator()->get('Waters');
         $water = $Waters->find();
         $water->where(['plant_id' => $id]);
