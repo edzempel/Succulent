@@ -75,7 +75,12 @@ class PotsController extends AppController
 
         $pot = $this->Pots->newEntity();
         if ($this->request->is('post')) {
-            $pot = $this->Pots->patchEntity($pot, $this->request->getData());
+            $data = $this->request->getData();
+
+            $data['pot_date']['hour'] = 00;
+            $data['pot_date']['minute'] = 00;
+
+            $pot = $this->Pots->patchEntity($pot, $data);
             // set the user_id from the session
             $pot->plant_id = $plant_id;
 
