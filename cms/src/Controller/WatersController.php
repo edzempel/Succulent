@@ -255,23 +255,5 @@ class WatersController extends AppController
 
 
     }
-
-    public function lastWatered($plant_id)
-    {
-        $lastWatered = '';
-
-        $water = $this->Waters->find();
-        $water->where(['plant_id' => $plant_id]);
-        $water->order(['water_date' => 'DESC']);
-        $water = $water->last();
-        $water = json_decode($water);
-        if (is_object($water)) {
-            $lastWatered = $water->water_date;
-
-        } else {
-            $this->Flash->error('The plant with id: ' . htmlspecialchars($plant_id) . ' is invalid');
-        }
-
-        return $lastWatered;
-    }
+    
 }
