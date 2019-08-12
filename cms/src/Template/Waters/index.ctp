@@ -16,9 +16,12 @@ $plant_id = $this->request->session()->read('plant_id');
 
     </div>
 
-        <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?></div>
+        <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5 mb-3"><?= $common_name; ?> </div>
 
-    <div class="row ">
+
+
+
+    <div class="row">
 
         <div class="card col-lg-4 col-md-4 my-3 mx-auto">
             <div class="card-body text-center">
@@ -57,10 +60,10 @@ $plant_id = $this->request->session()->read('plant_id');
                 <tr>
 
 
-                    <td><?= h($water->water_date) ?></td>
+                    <td><?= $water->water_date->format('m/d/Y') ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $water->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $water->id], ['confirm' => __('Are you sure you want to delete {0} from watering history?', $water->water_date)]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $water->id], ['confirm' => __('Are you sure you want to delete {0} from watering history?', $water->water_date->format('m/d/Y'))]) ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

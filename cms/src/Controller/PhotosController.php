@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -15,7 +16,7 @@ class PhotosController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|void
+     * @return \Cake\Http\Response|null
      */
     public function index()
     {
@@ -31,7 +32,7 @@ class PhotosController extends AppController
      * View method
      *
      * @param string|null $id Photo id.
-     * @return \Cake\Http\Response|void
+     * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
@@ -48,15 +49,18 @@ class PhotosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($plant_id)
     {
         $photo = $this->Photos->newEntity();
         if ($this->request->is('post')) {
             $photo = $this->Photos->patchEntity($photo, $this->request->getData());
-            if ($this->Photos->save($photo)) {
-                $this->Flash->success(__('The photo has been saved.'));
+            $photo->plant_id = $plant_id;
 
-                return $this->redirect(['action' => 'index']);
+            if ($this->Photos->save($photo)) {
+                $this->UpdatePhotoName->updatePhotoName($photo);
+                $this->Flash->success(__($photo->photo . ' has been saved.'));
+
+                return $this->redirect(['controller' => 'Plants', 'action' => 'view', $plant_id]);
             }
             $this->Flash->error(__('The photo could not be saved. Please, try again.'));
         }
@@ -101,11 +105,47 @@ class PhotosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $photo = $this->Photos->get($id);
         if ($this->Photos->delete($photo)) {
-            $this->Flash->success(__('The photo has been deleted.'));
+            $this->DeletePhoto->deletePhoto($photo);
+            $this->Flash->success(__($photo->photo . ' has been deleted'));
         } else {
-            $this->Flash->error(__('The photo could not be deleted. Please, try again.'));
+            $this->Flash->error(__($photo->photo . ' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function isAuthorized($user)
+    {
+        $action = $this->request->getParam('action');
+
+        // The add actions are always allowed to logged in users.
+        if (in_array($action, ['add', 'index', 'edit', 'delete', 'last'])) {
+
+            return true;
+        }
+
+        // All other actions require an id.
+        $id = $this->request->getParam('pass.0');
+        if (!$id) {
+            return false;
+        }
+
+        // Check that the article belongs to the current user.
+        $water = $this->Photos->get($id)->first();
+        $plant = $this->Plants->get($water->plant_id)->first();
+
+        return $plant->user_id === $user['id'];
+
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+        // list what is allowed for unauthenticated users
+        $this->Auth->allow(['']);
+
+        $this->loadComponent('UpdatePhotoName');
+        $this->loadComponent('DeletePhoto');
+    }
+
 }

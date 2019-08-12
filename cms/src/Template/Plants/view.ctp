@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Plant $plant
  */
+$first_last_plant_photos = $this->request->session()->read('first_last_plant_photos');
 ?>
 <div class="container-prof">
 <div class="mt-3 btn btn-success position-relative">
@@ -20,8 +21,29 @@
 
             <?= $this->Html->link(__(''), ['action' => 'edit', $plant->id], ['class' => 'btn btn-secondary float-right mt-3 mr-4 fas fa-pen fa-2x']) ?>
 
-            <div class="font-weight-bold text-dark text-com-name text-com-color"><?= h($plant->common_name) ?></div>
-            <div class="font-weight-normal mb-4 text-secondary text-sci-name"><?= h($plant->scientific_name) ?></div>
+            <div class="font-weight-bold text-dark text-com-name text-com-color "><?= h($plant->common_name) ?></div>
+            <div class="font-weight-normal mb-4 text-secondary text-sci-name font-italic"><?= h($plant->scientific_name) ?></div>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-3 mb-4">
+        <div class="col-12">
+
+            <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none ']) ?>
+
+            <?= $this->Html->link(__(' +'), ['controller' => 'Waters', 'action' => 'add', $plant->id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
+
+
+            <?= $this->Html->link(__(' +'), ['controller' => 'Pots', 'action' => 'add', $plant->id], ['class' => 'btn btn-warning fas fa-spa ml-4 fa-2x float-right']) ?>
+
+            <?= $this->Html->link(__('Last Potted: ' . $this->request->session()->read('last_potted')), ['controller' => 'Pots', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none float-right']) ?>
+
+
+        </div>
+        <div>
+            <?= $this->Html->link(__(' photo +'), ['controller'=>'Photos', 'action' => 'add', $plant->id], ['class' => 'btn fas fa-tint ml-4 fa-2x']) ?>
         </div>
     </div>
 
@@ -37,42 +59,22 @@
         </div>
 
 
+
         <div class="row">
             <div class="col-12">
-                <?= $this->Html->image('smaller wax agave.jpg', ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image($first_last_plant_photos['first'], ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
 
-                <?= $this->Html->image('old-agave.jpg', ['class' => 'float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image($first_last_plant_photos['last'], ['class' => 'mb-4 float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
             </div>
         </div>
     </div>
 
-    <div class="row my-3">
-        <div class="col-12">
 
-            <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none mr-2']) ?>
-
-            <?= $this->Html->link(__(' +'), ['controller' => 'Waters', 'action' => 'add', $plant->id], ['class' => 'btn btn-info fas fa-tint ml-4 fa-2x']) ?>
-
-
-
-        </div>
-    </div>
-
-    <div class="row my-3">
-        <div class="col-12">
-
-            <?= $this->Html->link(__('Last Potted: ' . $this->request->session()->read('last_potted')), ['controller' => 'Pots', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none']) ?>
-
-
-            <?= $this->Html->link(__(' +'), ['controller' => 'Pots', 'action' => 'add', $plant->id], ['class' => 'btn btn-warning fas fa-spa ml-5 fa-2x']) ?>
-
-        </div>
-    </div>
 
 </div>
 <div class="container-prof">
 
-    <div class="mt-4 py-3">
+    <div class="mt-3 py-3">
         <div class="text-com-name text-danger"> Notes</div>
 
 

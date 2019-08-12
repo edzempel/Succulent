@@ -8,7 +8,10 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $plant_id
- * @property string $url
+ * @property string|null $photo
+ * @property string|null $dir
+ * @property string|null $size
+ * @property string|null $type
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property bool|null $is_profile
@@ -28,7 +31,10 @@ class Photo extends Entity
      */
     protected $_accessible = [
         'plant_id' => true,
-        'url' => true,
+        'photo' => true,
+        'dir' => true,
+        'size' => true,
+        'type' => true,
         'created' => true,
         'modified' => true,
         'is_profile' => true,
