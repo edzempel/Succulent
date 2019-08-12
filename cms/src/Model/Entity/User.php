@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\Auth\DefaultPasswordHasher; // Add this line
 use Cake\ORM\Entity;
+use Cake\Log\Log;
 
 /**
  * User Entity
@@ -54,6 +55,10 @@ class User extends Entity
     {
         if (strlen($value)) {
             $hasher = new DefaultPasswordHasher();
+            // write these passwords as hashes to debug when a new user is created
+            // note: need to have the same salt set in config/app.php for this to work
+            Log::write('debug',$hasher->hash('admin'));
+
 
             return $hasher->hash($value);
         }

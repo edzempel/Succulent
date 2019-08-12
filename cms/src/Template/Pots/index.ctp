@@ -18,12 +18,12 @@ $days_since_potted = $this->request->session()->read('days_since_potted');
 
     </div>
 
-    <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5"><?= $common_name; ?></div>
+    <div class="font-weight-bold text-dark text-com-name text-com-color text-center mr-5 mb-3"><?= $common_name; ?></div>
     <div class="row ">
         <div class="card col-lg-4 col-md-4 mx-5 my-3 mx-auto">
             <div class="card-body text-center">
                 <h2 class="card-title">
-                    <?= $days_since_potted?>
+                    <?= $days_since_potted ?>
                 </h2>
                 <p class="card-text">Days since last potting</p>
             </div>
@@ -44,10 +44,10 @@ $days_since_potted = $this->request->session()->read('days_since_potted');
         <tbody>
         <?php foreach ($pots as $pot): ?>
             <tr>
-                <td><?= h($pot->pot_date) ?></td>
+                <td><?= $pot->pot_date->format('m/d/Y')?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pot->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pot->id], ['confirm' => __('Are you sure you want to delete {0} from potting history?', $pot->pot_date)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pot->id], ['confirm' => __('Are you sure you want to delete {0} from potting history?', $pot->pot_date->format('m/d/Y'))]) ?>
                 </td>
             </tr>
         <?php endforeach; ?>

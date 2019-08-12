@@ -35,7 +35,7 @@ class Plant extends Entity
         'user_id' => true,
         'scientific_name' => true,
         'common_name' => true,
-        'slug' => true,
+        //'slug' => true,
         'notes' => true,
         'created' => true,
         'modified' => true,

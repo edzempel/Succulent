@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\I18n\Time;
+use Cake\Log\Log;
 
 /**
  * Plants Controller
@@ -30,7 +30,8 @@ class PlantsController extends AppController
         ];
         $user_id = $this->Auth->user('id');
         $plants = $this->paginate($this->Plants->find()->where(['user_id' => $user_id]), $settings);
-
+        $most_recent_plant_photos = $this->LastPhotoForAll->lastPhotoForall($user_id);
+        $this->request->session()->write('most_recent_plant_photos', $most_recent_plant_photos);
         $this->set(compact('plants'));
     }
 
@@ -46,39 +47,18 @@ class PlantsController extends AppController
         $plant = $this->Plants->get($id, [
             'contain' => ['Users', 'Photos', 'Pots', 'Waters']
         ]);
+        $this->request->session()->write('commmon_name', $plant->common_name);
+        $this->request->session()->write('plant_id', $plant->id);
 
-        $this->loadModel('Waters');
-        $water = $this->Waters->find();
-        $water->where(['plant_id' => $id]);
-        $water->order(['water_date' => 'DESC']);
-        $water = $water->first();
-        $water = json_decode($water);
-        if (is_object($water)) {
-            $lastWatered = $water->water_date;
-            $lastWatered = new Time($lastWatered);
-            $lastWatered = $lastWatered->format('D, j M Y');
+        $lastWatered = $this->GetLastWater->getLastWater($id);
+        $lastPotted = $this->GetLastPot->getLastPot($id);
+        $firstAndLastPlantPhotos = $this->FirstAndLastPhoto->getFirstAndLastPhoto($id);
+//        Log::write('debug', $firstAndLastPlantPhotos);
 
-        } else {
-            $lastWatered = 'not watered yet';
-        }
-
-        $this->loadModel('Pots');
-        $pot = $this->Pots->find();
-        $pot->where(['plant_id' => $id]);
-        $pot->order(['pot_date' => 'DESC']);
-        $pot = $pot->first();
-        $pot = json_decode($pot);
-        if (is_object($pot)) {
-            $lastPotted = $pot->pot_date;
-            $lastPotted = new Time($lastPotted);
-            $lastPotted = $lastPotted->format('D, j M Y');
-
-        } else {
-            $lastPotted = 'not potted yet';
-        }
 
         $this->request->session()->write('last_watered', $lastWatered);
         $this->request->session()->write('last_potted', $lastPotted);
+        $this->request->session()->write('first_last_plant_photos', $firstAndLastPlantPhotos);
         $this->set('plant', $plant);
     }
 
@@ -179,5 +159,9 @@ class PlantsController extends AppController
         parent::initialize();
         // list what is allowed for unauthenticated users
         $this->Auth->allow(['']);
+        $this->loadComponent('FirstAndLastPhoto');
+        $this->loadComponent('LastPhotoForAll');
+        $this->loadComponent('GetLastWater');
+        $this->loadComponent('GetLastPot');
     }
 }

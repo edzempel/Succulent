@@ -23,8 +23,20 @@
             <td><?= $photo->has('plant') ? $this->Html->link($photo->plant->id, ['controller' => 'Plants', 'action' => 'view', $photo->plant->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Url') ?></th>
-            <td><?= h($photo->url) ?></td>
+            <th scope="row"><?= __('Photo') ?></th>
+            <td><?= h($photo->photo) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Dir') ?></th>
+            <td><?= h($photo->dir) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Size') ?></th>
+            <td><?= h($photo->size) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Type') ?></th>
+            <td><?= h($photo->type) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

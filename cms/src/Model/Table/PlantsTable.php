@@ -48,13 +48,19 @@ class PlantsTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Photos', [
-            'foreignKey' => 'plant_id'
+            'foreignKey' => 'plant_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('Pots', [
-            'foreignKey' => 'plant_id'
+            'foreignKey' => 'plant_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('Waters', [
-            'foreignKey' => 'plant_id'
+            'foreignKey' => 'plant_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 
@@ -80,12 +86,15 @@ class PlantsTable extends Table
             ->maxLength('common_name', 255)
             ->allowEmptyString('common_name');
 
+        /*
+         * Removing Slug from program. -YV
         $validator
             ->scalar('slug')
             ->maxLength('slug', 191)
             ->requirePresence('slug', 'create')
             ->allowEmptyString('slug', false)
             ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+        */
 
         $validator
             ->scalar('notes')
