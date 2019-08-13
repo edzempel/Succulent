@@ -17,7 +17,12 @@ $plant_id = $this->request->session()->read('plant_id');
     </ul>
 </nav>
 <div class="photos index large-9 medium-8 columns content">
-    <h3><?= __('Photos') ?></h3>
+    <h3><?= __($common_name.'\'s Photos') ?></h3>
+    <div class="mt-3 mb-4 btn btn-success position-relative">
+
+        <?= $this->Html->link(__(' '), ['controller' => 'plants', 'action' => 'view', $plant_id], ['class' => ' text-decoration-none fas fa-arrow-left fa-2x text-light stretched-link']); ?>
+
+    </div>
     <table cellpadding="0" cellspacing="0">
 
         <tbody>
