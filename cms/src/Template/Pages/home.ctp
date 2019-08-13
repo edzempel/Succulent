@@ -126,37 +126,30 @@ if ($username == null) {
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="/img/MyLibrary.jpg" class="d-block w-100 border" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 class="font-weight-bold ">First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <div class="carousel-caption d-none d-md-block ">
+                        <h3 class="font-weight-bold text-com-color ">Build your collection</h3>
+                        <h5 class="text-white">Add all of your beautiful succulents!</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="/img/PlantView.jpg" class="d-block w-100 border" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5 class="font-weight-bold">Second slide label</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h3 class="font-weight-bold text-com-color">Watch them grow</h3>
+                        <h5 class="text-white">Have the first and last photo a click away to <br/> see how your succulents have grown!</h5>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img src="/img/waters_index.jpg" class="d-block w-100 border" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        <h3 class="font-weight-bold text-com-color">Water at the right time</h3>
+                        <h5 class="text-white">Track your plants water cycle and history easily!</h5>
                     </div>
                 </div>
-<!--                <div class="carousel-item">-->
-<!--                    <img src="/img/1920x1080.jpg" class="d-block w-100" alt="...">-->
-<!--                    <div class="carousel-caption d-none d-md-block">-->
-<!--                        <h5>Third slide label</h5>-->
-<!--                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
