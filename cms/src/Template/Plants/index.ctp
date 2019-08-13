@@ -35,6 +35,8 @@ $most_recent_plant_photos = $this->request->session()->read('most_recent_plant_p
 </div>
 
 
+
+
 <div class="">
     <div class="row  mx-auto">
 
@@ -58,6 +60,11 @@ $most_recent_plant_photos = $this->request->session()->read('most_recent_plant_p
         <?php endforeach; ?>
     </div>
 </div>
+
+
+
+
+
 
 <div class="paginator">
     <ul class="pagination">

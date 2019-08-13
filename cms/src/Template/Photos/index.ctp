@@ -8,46 +8,80 @@ $plant_id = $this->request->session()->read('plant_id');
 ?>
 
 
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Photo'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Plants'), ['controller' => 'Plants', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Plant'), ['controller' => 'Plants', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="photos index large-9 medium-8 columns content">
-    <h3><?= __($common_name.'\'s Photos') ?></h3>
-    <div class="mt-3 mb-4 btn btn-success position-relative">
+<div class="row mt-4">
 
-        <?= $this->Html->link(__(' '), ['controller' => 'plants', 'action' => 'view', $plant_id], ['class' => ' text-decoration-none fas fa-arrow-left fa-2x text-light stretched-link']); ?>
 
+    <div class="col">
+        <div class="mb-4 btn btn-success position-relative">
+
+            <?= $this->Html->link(__(' '), ['controller' => 'plants', 'action' => 'view', $plant_id], ['class' => ' text-decoration-none fas fa-arrow-left fa-2x text-light stretched-link']); ?>
+
+        </div>
     </div>
-    <table cellpadding="0" cellspacing="0">
 
-        <tbody>
-            <?php foreach ($photos as $photo): ?>
-            <tr>
-<!--                display the photos-->
-                <td><?= $this->Html->image(substr($photo->dir, 12).$photo->photo, ['class' => 'card-img-top  ', 'alt' => 'succulent logo', ]); ?></td>
-                <td><?= $this->Number->format($photo->id) ?></td>
-                <td><?= $photo->has('plant') ? $this->Html->link($photo->plant->id, ['controller' => 'Plants', 'action' => 'view', $photo->plant->id]) : '' ?></td>
-                <td><?= h($photo->photo) ?></td>
-                <td><?= h($photo->dir) ?></td>
-                <td><?= h($photo->size) ?></td>
-                <td><?= h($photo->type) ?></td>
-                <td><?= h($photo->created) ?></td>
-                <td><?= h($photo->modified) ?></td>
-                <td><?= h($photo->is_profile) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $photo->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $photo->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $photo->id], ['confirm' => __('Are you sure you want to delete {0}?', $photo->photo)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+
+
+
+        <h1 class="text-center text-com-color font-weight-bold col"><?= __($common_name.'\'s Photos') ?></h1>
+
+    <div class="col">
+        <div class="float-right ml-3">
+            <!--The top buttons on the page-->
+            <?= $this->Html->link(__(''), ['controller' => 'photos', 'action' => 'add', $plant_id], ['class' => 'btn btn-success fas fa-plus fa-2x']) ?>
+        </div>
+
+        <div class="float-right ">
+            <!--The Sort dropdown button-->
+            <div class="dropdown ">
+                <button class="btn btn-success dropdown-toggle fas fa-sort-alpha-down fa-2x" type="button"
+                        id="dropdownMenu2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                    <div class="dropdown-item "><?= $this->Paginator->sort('photo') ?></div>
+                    <div class="dropdown-item"><?= $this->Paginator->sort('created') ?></div>
+                    <div class="dropdown-item"><?= $this->Paginator->sort('type') ?></div>
+                    <div class="dropdown-item"><?= $this->Paginator->sort('size') ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="">
+    <div class="row  mx-auto">
+
+        <?php foreach ($photos as $photo): ?>
+            <div class="col-lg-3 col-md-4 col-6 p-4 ">
+
+                <div class="card zoom-card">
+                    <?= $this->Html->image(substr($photo->dir, 12).$photo->photo, ['class' => 'card-img-top  ', 'alt' => 'succulent logo', ]); ?>
+
+                    <div class="card-body row">
+
+                        <div class="col-8">
+                         <?= __($photo->photo) ?>
+                        </div>
+
+                        <div class="col-4">
+                        <?= $this->Form->postLink(__(''), ['action' => 'delete', $photo->id], ['class' => 'btn btn-danger float-right  fas fa-trash-alt fa-2x', 'confirm' => __('Are you sure you want to delete {0}?', $photo->photo)]) ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        <?php endforeach; ?>
+    </div>
+</div>
+
+
+
+
 
 
 
@@ -64,4 +98,4 @@ $plant_id = $this->request->session()->read('plant_id');
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} photos(s) out of {{count}} total')]) ?></p>
     </div>
-</div>
+

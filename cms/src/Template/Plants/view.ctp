@@ -17,7 +17,7 @@ $first_last_plant_photos = $this->request->session()->read('first_last_plant_pho
 
     <div class="row">
         <div class="col-12">
-            <?= $this->Form->postLink(__(''), ['action' => 'delete', $plant->id], ['class' => 'btn btn-danger float-right mt-3 mr-4 fas fa-trash-alt fa-2x', 'confirm' => __('Are you sure you want to delete {0}?', $plant->common_name)]) ?>
+            <?= $this->Form->postLink(__(''), ['action' => 'delete', $plant->id], ['class' => 'btn btn-danger float-right mt-3 fas fa-trash-alt fa-2x', 'confirm' => __('Are you sure you want to delete {0}?', $plant->common_name)]) ?>
 
             <?= $this->Html->link(__(''), ['action' => 'edit', $plant->id], ['class' => 'btn btn-secondary float-right mt-3 mr-4 fas fa-pen fa-2x']) ?>
 
@@ -43,7 +43,7 @@ $first_last_plant_photos = $this->request->session()->read('first_last_plant_pho
 
         </div>
     </div>
-        <div class="float-right mr-1">
+        <div class="float-right mr-1 mt-2">
 
             <?= $this->Html->link(__('Photo Album'), ['controller'=>'Photos', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none ']) ?>
             <?= $this->Html->link(__(' +'), ['controller'=>'Photos', 'action' => 'add', $plant->id], ['class' => 'btn btn-dark fas fa-camera-retro ml-4 mr-4 fa-2x']) ?>
@@ -52,10 +52,8 @@ $first_last_plant_photos = $this->request->session()->read('first_last_plant_pho
         </div>
 
 
-    <div class="">
 
-
-        <div class="row">
+        <div class="row mb-1">
 
             <div class="col text-sci-name text-secondary ">Oldest Photo</div>
 
@@ -66,12 +64,12 @@ $first_last_plant_photos = $this->request->session()->read('first_last_plant_pho
 
         <div class="row">
             <div class="col-12">
-                <?= $this->Html->image($first_last_plant_photos['first'], ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image($first_last_plant_photos['first'], ['class' => ' mb-4 plantPicwidth rounded border ', 'alt' => 'The First Photo Added', 'url' => ['controller' => 'Photos', 'action' => 'index', $plant->id]]); ?>
 
-                <?= $this->Html->image($first_last_plant_photos['last'], ['class' => 'mb-4 float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Plants', 'action' => 'view', $plant->id]]); ?>
+                <?= $this->Html->image($first_last_plant_photos['last'], ['class' => 'mb-4 float-right plantPicwidth rounded border ', 'alt' => 'The Last Photo Added', 'url' => ['controller' => 'Photos', 'action' => 'index', $plant->id]]); ?>
             </div>
         </div>
-    </div>
+
 
 
 
