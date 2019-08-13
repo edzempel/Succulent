@@ -9,9 +9,22 @@ $plant_id = $this->request->session()->read('plant_id');
 
 
 <div class="row mt-4">
-    <div class="col-12 ">
 
 
+    <div class="col">
+        <div class="mb-4 btn btn-success position-relative">
+
+            <?= $this->Html->link(__(' '), ['controller' => 'plants', 'action' => 'view', $plant_id], ['class' => ' text-decoration-none fas fa-arrow-left fa-2x text-light stretched-link']); ?>
+
+        </div>
+    </div>
+
+
+
+
+        <h1 class="text-center text-com-color font-weight-bold col"><?= __($common_name.'\'s Photos') ?></h1>
+
+    <div class="col">
         <div class="float-right ml-3">
             <!--The top buttons on the page-->
             <?= $this->Html->link(__(''), ['controller' => 'photos', 'action' => 'add', $plant_id], ['class' => 'btn btn-success fas fa-plus fa-2x']) ?>
@@ -32,18 +45,9 @@ $plant_id = $this->request->session()->read('plant_id');
                 </div>
             </div>
         </div>
-
-        <div class=" mb-4 btn btn-success position-relative">
-
-            <?= $this->Html->link(__(' '), ['controller' => 'plants', 'action' => 'view', $plant_id], ['class' => ' text-decoration-none fas fa-arrow-left fa-2x text-light stretched-link']); ?>
-
-        </div>
-
     </div>
+
 </div>
-
-    <h3 class="text-center text-com-color font-weight-bold mb-3"><?= __($common_name.'\'s Photos') ?></h3>
-
 
 
 
