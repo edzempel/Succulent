@@ -28,8 +28,8 @@ $first_last_plant_photos = $this->request->session()->read('first_last_plant_pho
 
 
 
-    <div class="row mt-3 mb-4">
-        <div class="col-12">
+    <div class="row mt-3 mb-3">
+        <div class="col-12 ">
 
             <?= $this->Html->link(__('Last Watered: ' . $this->request->session()->read('last_watered')), ['controller' => 'Waters', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none ']) ?>
 
@@ -42,10 +42,14 @@ $first_last_plant_photos = $this->request->session()->read('first_last_plant_pho
 
 
         </div>
-        <div>
-            <?= $this->Html->link(__(' photo +'), ['controller'=>'Photos', 'action' => 'add', $plant->id], ['class' => 'btn fas fa-tint ml-4 fa-2x']) ?>
-        </div>
     </div>
+        <div class="float-right mr-1">
+
+            <?= $this->Html->link(__('Photo Album'), ['controller'=>'Photos', 'action' => 'index', $plant->id], ['class' => 'text-secondary text-sci-name text-decoration-none ']) ?>
+            <?= $this->Html->link(__(' +'), ['controller'=>'Photos', 'action' => 'add', $plant->id], ['class' => 'btn btn-dark fas fa-camera-retro ml-4 mr-4 fa-2x']) ?>
+
+
+        </div>
 
 
     <div class="">
