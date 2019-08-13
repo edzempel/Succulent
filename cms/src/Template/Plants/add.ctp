@@ -21,7 +21,6 @@ $this->assign('username', $username);
 //            echo $this->Form->control('user_id', [$plant->user_id]);
         echo $this->Form->control('common_name');
             echo $this->Form->control('scientific_name');
-            echo $this->Form->control('slug');
             echo $this->Form->control('notes');
         ?>
     </fieldset>
