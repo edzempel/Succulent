@@ -13,7 +13,7 @@ $plant_id = $this->request->session()->read('plant_id');
     <fieldset>
         <legend class="text-info text-center"><?= __('Add Pot for ' . $common_name) ?></legend>
 
-        <div class="text-sci-name text-secondary mt-4 text-center">Pot Date (Y/M/D/H/M):</div>
+        <div class="text-sci-name text-secondary mt-4 text-center">Pot Date (Y/M/D):</div>
 
         <div class="mt-3 text-center ml-3"> <?= $this->Form->control('pot_date', ['empty' => true, 'label' => '', 'dateFormat' => 'dd-MM-yyyy', 'minYear' => '2017', 'type' => 'date', 'default' => date('dd-MM-yyyy')]) ?></div>
     </fieldset>
