@@ -25,6 +25,6 @@ $this->assign('username', $username);
         ?>
     </fieldset>
     <button class="btn btn-success float-right mt-4 text-sci-name" type="submit">Add Plant</button>
-    <div><?= $this->Html->link(__('Cancel'), ['controller' => 'plants', 'action' => 'view', $plant_id], ['class' => 'btn btn-danger mr-3 mt-4 text-sci-name float-right']) ?></div>
+    <div><?= $this->Html->link(__('Cancel'), ['controller' => 'plants', 'action' => 'index'], ['class' => 'btn btn-danger mr-3 mt-4 text-sci-name float-right']) ?></div>
     <?= $this->Form->end() ?>
 </div>

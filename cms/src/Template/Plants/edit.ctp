@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Plant $plant
  */
+$plant_id = $this->request->session()->read('plant_id');
 ?>
 
 <div class="container-profpic mt-5">
