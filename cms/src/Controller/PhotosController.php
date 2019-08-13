@@ -23,7 +23,7 @@ class PhotosController extends AppController
         $this->paginate = [
             'contain' => ['Plants']
         ];
-        $photos = $this->paginate($this->Photos->find()->where(['plant_id'=>$plant_id])->orderDesc('photos.created'));
+        $photos = $this->paginate($this->Photos->find()->where(['plant_id' => $plant_id])->orderDesc('photos.created'));
 
         $this->set(compact('photos'));
     }
@@ -110,8 +110,9 @@ class PhotosController extends AppController
         } else {
             $this->Flash->error(__($photo->photo . ' could not be deleted. Please, try again.'));
         }
+        $plant_id = $this->request->session()->read('plant_id');
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'photos', 'action' => 'index', $plant_id]);
     }
 
     public function isAuthorized($user)
