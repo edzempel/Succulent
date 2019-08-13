@@ -20,12 +20,8 @@ class PhotosController extends AppController
      */
 
 
-
-
-
     public function index($plant_id = null)
     {
-
 
 
         $this->paginate = [
@@ -36,21 +32,11 @@ class PhotosController extends AppController
             'limit' => 8,
         ];
 
-        $photos = $this->paginate($this->Photos->find()->where(['plant_id'=>$plant_id])->orderDesc('photos.created'), $settings);
-
-
-
+        $photos = $this->paginate($this->Photos->find()->where(['plant_id' => $plant_id])->orderDesc('photos.created'), $settings);
 
 
         $this->set(compact('photos'));
     }
-
-
-
-
-
-
-
 
 
     /**
