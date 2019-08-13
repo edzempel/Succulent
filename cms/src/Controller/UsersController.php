@@ -112,7 +112,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        return $this->redirect(['controller' => 'Pages', 'action' => 'home']);
     }
 
     public function login()
