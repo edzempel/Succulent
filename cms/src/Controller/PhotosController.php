@@ -39,7 +39,7 @@ class PhotosController extends AppController
         $photos = $this->paginate($this->Photos->find()->where(['plant_id'=>$plant_id])->orderDesc('photos.created'), $settings);
 
 
-        
+
 
 
         $this->set(compact('photos'));
