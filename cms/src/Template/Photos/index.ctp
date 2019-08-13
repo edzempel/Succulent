@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Photo[]|\Cake\Collection\CollectionInterface $photos
  */
+$common_name = $this->request->session()->read('commmon_name');
+$plant_id = $this->request->session()->read('plant_id');
 ?>
 
 

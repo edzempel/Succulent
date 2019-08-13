@@ -18,12 +18,12 @@ class PhotosController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($plant_id = null)
     {
         $this->paginate = [
             'contain' => ['Plants']
         ];
-        $photos = $this->paginate($this->Photos);
+        $photos = $this->paginate($this->Photos->find()->where(['plant_id'=>$plant_id]));
 
         $this->set(compact('photos'));
     }
