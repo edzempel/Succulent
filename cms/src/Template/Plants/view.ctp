@@ -53,7 +53,7 @@ $first_last_plant_photos = $this->request->session()->read('first_last_plant_pho
 
 
 
-        <div class="row mb-2">
+        <div class="row mb-1">
 
             <div class="col text-sci-name text-secondary ">Oldest Photo</div>
 
