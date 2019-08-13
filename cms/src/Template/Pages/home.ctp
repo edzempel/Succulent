@@ -144,7 +144,7 @@ if ($username == null) {
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="/img/waters_index.jpg" class="d-block w-100" alt="...">
+                    <img src="/img/waters_index.jpg" class="d-block w-100 border" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
