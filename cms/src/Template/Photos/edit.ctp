@@ -25,10 +25,7 @@
         <?php
             echo $this->Form->control('plant_id', ['options' => $plants]);
             echo $this->Form->control('photo', ['type' => 'file']);
-//            echo $this->Form->control('dir');
-//            echo $this->Form->control('size');
-//            echo $this->Form->control('type');
-            echo $this->Form->control('is_profile');
+
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
