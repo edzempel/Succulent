@@ -20,12 +20,8 @@ class PhotosController extends AppController
      */
 
 
-
-
-
     public function index($plant_id = null)
     {
-
 
 
         $this->paginate = [
@@ -36,21 +32,11 @@ class PhotosController extends AppController
             'limit' => 8,
         ];
 
-        $photos = $this->paginate($this->Photos->find()->where(['plant_id'=>$plant_id])->orderDesc('photos.created'), $settings);
-
-
-
+        $photos = $this->paginate($this->Photos->find()->where(['plant_id' => $plant_id])->orderDesc('photos.created'), $settings);
 
 
         $this->set(compact('photos'));
     }
-
-
-
-
-
-
-
 
 
     /**
@@ -110,7 +96,9 @@ class PhotosController extends AppController
             if ($this->Photos->save($photo)) {
                 $this->Flash->success(__('The photo has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                $plant_id = $this->request->session()->read('plant_id');
+
+                return $this->redirect(['controller' => 'photos', 'action' => 'index', $plant_id]);
             }
             $this->Flash->error(__('The photo could not be saved. Please, try again.'));
         }
@@ -135,8 +123,9 @@ class PhotosController extends AppController
         } else {
             $this->Flash->error(__($photo->photo . ' could not be deleted. Please, try again.'));
         }
+        $plant_id = $this->request->session()->read('plant_id');
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'photos', 'action' => 'index', $plant_id]);
     }
 
     public function isAuthorized($user)

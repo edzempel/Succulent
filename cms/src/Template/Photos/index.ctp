@@ -62,8 +62,11 @@ $plant_id = $this->request->session()->read('plant_id');
 
                     <div class="card-body row">
 
-                        <div class="col-8">
+                        <div class="col-8 font-weight-bold">
                          <?= __($photo->photo) ?>
+                        </div>
+                        <div class="col-8 text-secondary">
+                            <?= __($photo->created->format('m-d-y')) ?>
                         </div>
 
                         <div class="col-4">
