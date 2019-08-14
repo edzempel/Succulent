@@ -264,3 +264,15 @@ select.form-control:focus::-ms-value {
     background-color: #fff;
 }
 
+
+
+.carousel-caption {
+    background: rgba(38, 140, 76, 0.8);
+    border-radius: 10px;
+}
+
+.text-carousel-color {
+    color: #faf8ff !important;
+
+}
+
