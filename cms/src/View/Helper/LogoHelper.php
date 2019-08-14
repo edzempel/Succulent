@@ -24,7 +24,7 @@ class LogoHelper extends Helper
         $username = $this->getView()->getRequest()->getSession()->read('username');
 //        $name = View::getRequest()->getSession()->read('username');
 //        Log::write('debug', $name);
-        Log::write('debug', $username);
+//        Log::write('debug', $username);
         if($username == null){
             $link = ['controller' => 'Pages', 'action' => 'home'];
 //            $this->Flash->error(__('Try logging in first:)'));
