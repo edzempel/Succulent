@@ -21,10 +21,10 @@ $this->assign('username', $username);
 //            echo $this->Form->control('user_id', [$plant->user_id]);
         echo $this->Form->control('common_name');
             echo $this->Form->control('scientific_name');
-            echo $this->Form->control('slug');
             echo $this->Form->control('notes');
         ?>
     </fieldset>
-    <button class="btn btn-danger float-right mt-3 text-sci-name" type="submit">Add Plant</button>
+    <button class="btn btn-success float-right mt-4 text-sci-name" type="submit">Add Plant</button>
+    <div><?= $this->Html->link(__('Cancel'), ['controller' => 'plants', 'action' => 'index'], ['class' => 'btn btn-danger mr-3 mt-4 text-sci-name float-right']) ?></div>
     <?= $this->Form->end() ?>
 </div>

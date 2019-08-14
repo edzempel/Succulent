@@ -13,7 +13,7 @@ $plant_id = $this->request->session()->read('plant_id');
         <?= $this->Form->create($water) ?>
         <fieldset>
             <legend class="text-center text-info "><?= __('Edit Water for ' . $common_name) ?></legend>
-            <div class="text-sci-name text-secondary mt-4 text-center">Water Date (Y/M/D/H/M): </div>
+            <div class="text-sci-name text-secondary mt-4 text-center">Water Date (Y/M/D): </div>
             <div class="mt-3 text-center ml-3">
             <?= $this->Form->control('water_date', ['empty' => true, 'label'=>'', 'type' => 'date', 'dateFormat' => 'dd-MM-yyyy' ]); ?>
             </div>

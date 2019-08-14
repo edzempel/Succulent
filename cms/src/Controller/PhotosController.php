@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Log\Log;
 
 /**
  * Photos Controller
@@ -18,15 +19,26 @@ class PhotosController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+
+
+    public function index($plant_id = null)
     {
+
+
         $this->paginate = [
             'contain' => ['Plants']
         ];
-        $photos = $this->paginate($this->Photos);
+
+        $settings = [
+            'limit' => 8,
+        ];
+
+        $photos = $this->paginate($this->Photos->find()->where(['plant_id' => $plant_id])->orderDesc('photos.created'), $settings);
+
 
         $this->set(compact('photos'));
     }
+
 
     /**
      * View method
@@ -53,16 +65,23 @@ class PhotosController extends AppController
     {
         $photo = $this->Photos->newEntity();
         if ($this->request->is('post')) {
-            $photo = $this->Photos->patchEntity($photo, $this->request->getData());
-            $photo->plant_id = $plant_id;
+            $data = $this->request->getData();
+//            Log::write('debug', $data);
+            if ($data['photo']['error'] == 0) {
+                $photo = $this->Photos->patchEntity($photo, $data);
+                $photo->plant_id = $plant_id;
 
-            if ($this->Photos->save($photo)) {
-                $this->UpdatePhotoName->updatePhotoName($photo);
-                $this->Flash->success(__($photo->photo . ' has been saved.'));
+                if ($this->Photos->save($photo)) {
+                    $this->UpdatePhotoName->updatePhotoName($photo);
+                    $this->Flash->success(__($photo->photo . ' has been saved.'));
 
-                return $this->redirect(['controller' => 'Plants', 'action' => 'view', $plant_id]);
+                    return $this->redirect(['controller' => 'Plants', 'action' => 'view', $plant_id]);
+                }
+                $this->Flash->error(__('The photo could not be saved. Please, try again.'));
+            } else {
+                $this->Flash->error(__('No file selected. Please, try again.'));
             }
-            $this->Flash->error(__('The photo could not be saved. Please, try again.'));
+
         }
         $plants = $this->Photos->Plants->find('list', ['limit' => 200]);
         $this->set(compact('photo', 'plants'));
@@ -85,7 +104,9 @@ class PhotosController extends AppController
             if ($this->Photos->save($photo)) {
                 $this->Flash->success(__('The photo has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                $plant_id = $this->request->session()->read('plant_id');
+
+                return $this->redirect(['controller' => 'photos', 'action' => 'index', $plant_id]);
             }
             $this->Flash->error(__('The photo could not be saved. Please, try again.'));
         }
@@ -110,8 +131,9 @@ class PhotosController extends AppController
         } else {
             $this->Flash->error(__($photo->photo . ' could not be deleted. Please, try again.'));
         }
+        $plant_id = $this->request->session()->read('plant_id');
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'photos', 'action' => 'index', $plant_id]);
     }
 
     public function isAuthorized($user)

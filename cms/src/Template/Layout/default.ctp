@@ -56,7 +56,7 @@ if($username == null){
     <nav class="navbar navbar-light bg-white" role="navigation">
         <div class="row">
             <div class="col">
-        <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-5 succlogo', 'alt' => 'succulent logo', 'url' => ['controller' => 'Plants', 'action' => 'index']]); ?>
+        <?= $this->Html->image('logo.jpg', ['class' => 'navbar-brand d-inline-block align-top zoom ml-5 succlogo', 'alt' => 'succulent logo', 'url' => $this->Logo->logoUrl()]); ?>
             </div>
 
         <h1 class="text-warning col text-center mt-1 font-weight-bold zoom"><a><?= $this->fetch('title') ?></a></h1>
